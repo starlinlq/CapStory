@@ -25,13 +25,13 @@ function NavBar() {
         <NavLogo>CapStory</NavLogo>
         <NavMenu icon={icon}>
           <NavItem>
-            <NavLinks>stories</NavLinks>
+            <NavLinks to="/">stories</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="">features</NavLinks>
+            <NavLinks to="/">features</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks>About</NavLinks>
+            <NavLinks to="/">About</NavLinks>
           </NavItem>
         </NavMenu>
         <NavIcon onClick={handleIcon}>

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Nav = styled.div`
-  font-family: "Sansita Swashed", cursive;
   display: flex;
   margin: 0 10%;
   justify-content: space-between;
@@ -43,6 +42,8 @@ export const NavIcon = styled.div`
 
 export const NavItem = styled.li`
   border-bottom: 2px solid transparent;
+  font-size: 18px;
+  font-weight: bold;
 
   &:hover {
     color: grey;
