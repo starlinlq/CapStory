@@ -1,14 +1,20 @@
-import { ADD_POST } from "./actionsNames";
+import { ADD_POST, ADD_DATA } from "./actionsNames";
 
 export const newPost = (data) => {
   return {
     type: ADD_POST,
     payLoad: {
-      url: data.url,
+      imgUrl: data.urlImg,
       title: data.title,
-      content: data.content,
+      story: data.story,
       author: data.author,
-      date: data.date,
     },
+  };
+};
+
+export const setData = (data) => {
+  return {
+    type: ADD_DATA,
+    payLoad: data,
   };
 };

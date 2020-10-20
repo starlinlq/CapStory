@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { newPost } from "../../globalStore/actionCreator";
+import { savePost } from "../../axios/getData";
 import {
   Section,
   Input,
@@ -7,9 +10,9 @@ import {
   FormButton,
   TextArea,
 } from "./CreatePost.elements";
-import { Button } from "../../global/globalStyles";
 
 function CreatePost() {
+  const dipatch = useDispatch();
   const [
     data = {
       author: "",
@@ -35,7 +38,13 @@ function CreatePost() {
     setData({ ...data, story: e.target.value });
   }
   function handleForm(e) {
-    console.log(data);
+    savePost(data);
+    setData({
+      author: "",
+      imgUrl: "",
+      title: "",
+      story: "",
+    });
     e.preventDefault();
   }
   return (

@@ -23,7 +23,6 @@ export const Input = styled.input`
   width: 100%;
   padding: 2% 0;
   margin: 4% 0;
-  border-raidus: 7px;
 `;
 export const Label = styled.label`
   display: block;

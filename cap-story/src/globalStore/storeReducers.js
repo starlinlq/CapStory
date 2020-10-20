@@ -1,4 +1,4 @@
-import { ADD_POST } from "./actionsNames";
+import { ADD_POST, ADD_DATA } from "./actionsNames";
 const initialState = [];
 const contentReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,13 +10,15 @@ const contentReducer = (state = initialState, action) => {
             {
               imgUrl: action.payLoad.url,
               title: action.payLoad.title,
-              content: action.payLoad.title,
+              story: action.payLoad.story,
               author: action.payLoad.author,
-              date: action.payLoad.date,
             },
           ],
         },
       ];
+    }
+    case ADD_DATA: {
+      return [...action.payLoad];
     }
     default:
       return state;

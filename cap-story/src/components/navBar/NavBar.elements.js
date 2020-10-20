@@ -6,9 +6,6 @@ export const Nav = styled.div`
   margin: 0 10%;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 999;
 `;
 
 export const NavLogo = styled.h2``;
