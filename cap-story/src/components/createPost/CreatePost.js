@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { newPost } from "../../globalStore/actionCreator";
 import { savePost } from "../../axios/getData";
 import {
   Section,
@@ -12,9 +10,13 @@ import {
 } from "./CreatePost.elements";
 
 function CreatePost() {
-  const dipatch = useDispatch();
+  var today = new window.Date();
+  var newDate =
+    today.getMonth() + "-" + (today.getDate() + 1) + "-" + today.getFullYear();
+
   const [
     data = {
+      date: newDate,
       author: "",
       imgUrl: "",
       title: "",
@@ -71,7 +73,7 @@ function CreatePost() {
         />
       </Section>
       <Section>
-        <FormButton>Submit</FormButton>
+        <FormButton to="/">Submit</FormButton>
       </Section>
     </Form>
   );

@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./components/navBar/NavBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CreatePost from "./components/createPost/CreatePost";
-import { loadData } from "./axios/getData";
+import { GlobalStyle } from "./global/globalStyles";
 import Card from "./components/cardSection/Card";
+import Header from "./components/header/Header";
 
 function App() {
   const state = useSelector((state) => state);
@@ -17,12 +18,14 @@ function App() {
 
   return (
     <Router>
+      <GlobalStyle />
       <NavBar />
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
+          <Header />
           <Card />
         </Route>
-        <Route path="/create">
+        <Route exact path="/create">
           <CreatePost />
         </Route>
       </Switch>

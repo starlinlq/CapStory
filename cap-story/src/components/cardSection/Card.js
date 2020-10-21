@@ -15,24 +15,27 @@ import {
 function Card() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+
   useEffect(() => {
     dispatch(loadData());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
       <Section>
-        <MainCard>
-          <CardBody to="/">
-            <Date>April 16th 2020</Date>
-            <Title>The Mountains</Title>
-            <Author>by John Leon</Author>
-            <CardFooter>
-              <p>Read More</p>
-              <BsArrowRight />
-            </CardFooter>
-          </CardBody>
-        </MainCard>
+        {state.map((data) => (
+          <MainCard imgUrl={data.imgUrl}>
+            <CardBody>
+              <Date>{data.date}</Date>
+              <Title>{data.title}</Title>
+              <Author>by {data.author}</Author>
+              <CardFooter to="/create">
+                <p>Read Story</p>
+                <BsArrowRight />
+              </CardFooter>
+            </CardBody>
+          </MainCard>
+        ))}
       </Section>
     </>
   );

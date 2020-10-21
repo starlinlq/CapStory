@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../global/globalStyles";
+import { Link } from "react-router-dom";
 
 export const Form = styled.form`
   margin-top: 4%;
@@ -10,7 +11,7 @@ export const Form = styled.form`
 export const Section = styled.div`
   width: 450px;
 `;
-export const FormButton = styled(Button)`
+export const FormButton = styled(Button, Link)`
   margin-top: 5%;
   width: 100%;
   ${Button}

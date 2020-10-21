@@ -1,11 +1,98 @@
 {
   "data": [
     {
+      "date": "10-20-2020",
       "author": "javier leon",
-      "imgUrl": "https://lindaontherun.com/wp-content/uploads/2019/09/Alaska9-Denali.jpg",
+      "imgUrl": "https://images.wallpapersden.com/image/download/planet-earth-in-dark-universe_64056_2560x1440.jpg",
       "title": "alaska",
       "story": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       "id": 3
+    },
+    {
+      "date": "10-20-2020",
+      "author": "josh lenon",
+      "imgUrl": "https://i.redd.it/az6lokgxhzc41.jpg",
+      "title": "Forest Sunset",
+      "story": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      "id": 4
+    },
+    {
+      "date": "9-21-2020",
+      "author": "Joshua Tom",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/20318.jpg",
+      "title": "The Sky",
+      "story": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      "id": 5
+    },
+    {
+      "date": "9-21-2020",
+      "author": "Lee woho",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/20445.jpg",
+      "title": "CyberPunk",
+      "story": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "id": 6
+    },
+    {
+      "date": "9-21-2020",
+      "author": "kim josh",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/19934.jpg",
+      "title": "The cat",
+      "story": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.",
+      "id": 7
+    },
+    {
+      "date": "9-21-2020",
+      "author": "Susan Merit",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/18677.jpg",
+      "title": "Modern Society",
+      "story": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+      "id": 8
+    },
+    {
+      "author": "Sim Moral",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/17849.jpg",
+      "title": "My deepest desire",
+      "story": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "id": 9
+    },
+    {
+      "date": "9-21-2020",
+      "author": "maria tomas",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/20311.jpg",
+      "title": "My Future",
+      "story": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+      "id": 10
+    },
+    {
+      "date": "9-21-2020",
+      "author": "Tom Josh",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/20151.jpg",
+      "title": "My fast life",
+      "story": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.",
+      "id": 11
+    },
+    {
+      "author": "Sim Coper",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/22811.jpg",
+      "title": "The batman of our time",
+      "story": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      "id": 12
+    },
+    {
+      "date": "9-21-2020",
+      "author": "Miguel Rum",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/18949.jpg",
+      "title": "The Freedom I Was Missing",
+      "story": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "id": 13
+    },
+    {
+      "date": "9-21-2020",
+      "author": "Dulce Molina",
+      "imgUrl": "https://wallpapershome.com/images/pages/pic_h/21272.jpg",
+      "title": "I lost",
+      "story": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      "id": 14
     }
   ]
 }

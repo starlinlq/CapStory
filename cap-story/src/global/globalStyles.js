@@ -10,8 +10,9 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body{
+  margin: 0 15%;
   font-family: 'Roboto', sans-serif;
-
+  height: 100%;
 }
 `;
 export const Button = styled.button`
