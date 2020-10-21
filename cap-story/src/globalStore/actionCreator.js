@@ -1,4 +1,4 @@
-import { ADD_POST, ADD_DATA } from "./actionsNames";
+import { ADD_POST, ADD_DATA, FIND_DATA } from "./actionsNames";
 
 export const newPost = (data) => {
   return {
@@ -9,6 +9,13 @@ export const newPost = (data) => {
       story: data.story,
       author: data.author,
     },
+  };
+};
+
+export const findPost = (id) => {
+  return {
+    type: FIND_DATA,
+    payLoad: id,
   };
 };
 

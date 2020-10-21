@@ -4,22 +4,31 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
 *{
-    margin: 0;
+   margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
+html{
+  min-height: 100vh;
+}
+
+
 body{
+  position: relative;
+  min-height: 100vh;
   margin: 0 15%;
   font-family: 'Roboto', sans-serif;
-  height: 100%;
+
+  @media screen and (max-width:960px){
+    margin: 0;
+  }
+  
 }
 `;
 export const Button = styled.button`
-  height: 30px;
-  padding: 0 2%;
+  padding: 1%;
   background: black;
-  border-radius: 2px;
   border: none;
   color: white;
   cursor: pointer;

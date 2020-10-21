@@ -29,7 +29,7 @@ function Card() {
               <Date>{data.date}</Date>
               <Title>{data.title}</Title>
               <Author>by {data.author}</Author>
-              <CardFooter to="/create">
+              <CardFooter to={`/data/${data.id}`}>
                 <p>Read Story</p>
                 <BsArrowRight />
               </CardFooter>

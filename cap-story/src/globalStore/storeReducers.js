@@ -1,4 +1,4 @@
-import { ADD_POST, ADD_DATA } from "./actionsNames";
+import { ADD_POST, ADD_DATA, FIND_DATA } from "./actionsNames";
 const initialState = [];
 const contentReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,6 +20,7 @@ const contentReducer = (state = initialState, action) => {
     case ADD_DATA: {
       return [...action.payLoad];
     }
+
     default:
       return state;
   }

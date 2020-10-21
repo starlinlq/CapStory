@@ -9,7 +9,7 @@ export const MainCard = styled.div`
   background-image: url(${({ imgUrl }) => `${imgUrl}`});
   background-repeat: no-repeat;
   height: 370px;
-  width: 333.01px;
+  width: 25%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
