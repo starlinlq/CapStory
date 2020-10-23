@@ -17,14 +17,16 @@ export const NavMenu = styled.ul`
 
   @media screen and (max-width: 960px) {
     display: flex;
-    width: 75%;
+    width: 100%;
     flex-direction: column;
     height: 90vh;
     position: absolute;
-    top: 80px;
+    top: 40px;
     left: ${({ icon }) => (icon ? 0 : "-100%")};
     opacity: 1;
     transition: all 0.5s ease;
+    background-color: black;
+    z-index: 1;
   }
 `;
 
@@ -53,25 +55,72 @@ export const NavItem = styled.li`
     }
   }
 `;
+export const DropMenu = styled.div`
+  display: none;
+  position: absolute;
+  background: white;
+  top: 50px;
+  height: 250px;
+  width: 550px;
+
+  border-radius: 5px;
+  z-index: 1;
+
+  &:hover {
+    display: block;
+    cursor: default;
+  }
+`;
 
 export const NavLinks = styled(Link)`
   color: black;
   display: flex;
-  align-items: center;
+  justify-content: center;
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
 
   &:hover {
-    color: #4b59f7;
+    color: red;
+  }
+
+  &:hover ${DropMenu} {
+    display: block;
   }
 
   @media screen and (max-width: 960px) {
     text-align: center;
+    color: white;
 
     &:hover {
       color: #4b59f7;
       transition: all 0.3s ease;
     }
+  }
+`;
+export const Section = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  height: 250px;
+`;
+
+export const DropBody = styled.div``;
+export const DropHeader = styled.div`
+  background-image: url("https://m.economictimes.com/thumb/height-450,width-600,imgsize-1016106,msid-68721417/nature1_gettyimages.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  margin-top: 10px;
+
+  height: 180px;
+  width: 160px;
+`;
+export const DropContent = styled.div`
+  &:hover {
   }
 `;

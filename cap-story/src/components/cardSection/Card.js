@@ -12,14 +12,7 @@ import {
   CardFooter,
 } from "./Card.elements";
 
-function Card() {
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-
-  useEffect(() => {
-    dispatch(loadData());
-  }, [dispatch]);
-
+function Card({ state }) {
   return (
     <>
       <Section>

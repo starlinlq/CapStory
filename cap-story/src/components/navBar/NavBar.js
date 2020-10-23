@@ -7,6 +7,11 @@ import {
   NavIcon,
   NavItem,
   NavLinks,
+  DropMenu,
+  DropBody,
+  DropHeader,
+  DropContent,
+  Section,
 } from "./NavBar.elements";
 import { Button } from "../../global/globalStyles";
 import { BiMenu } from "react-icons/bi";
@@ -25,13 +30,31 @@ function NavBar() {
         <NavLogo>CapStory</NavLogo>
         <NavMenu icon={icon}>
           <NavItem>
-            <NavLinks to="/">stories</NavLinks>
+            <NavLinks to="/">HOME</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="/">features</NavLinks>
+            <NavLinks to="/stories">
+              STORIES
+              <DropMenu>
+                <Section>
+                  <DropBody>
+                    <DropHeader></DropHeader>
+                    <DropContent>Freedom</DropContent>
+                  </DropBody>
+                  <DropBody>
+                    <DropHeader></DropHeader>
+                    <DropContent>Places</DropContent>
+                  </DropBody>
+                  <DropBody>
+                    <DropHeader></DropHeader>
+                    <DropContent>Emotions</DropContent>
+                  </DropBody>
+                </Section>
+              </DropMenu>
+            </NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="/">About</NavLinks>
+            <NavLinks to="/">FEATURES</NavLinks>
           </NavItem>
         </NavMenu>
         <NavIcon onClick={handleIcon}>

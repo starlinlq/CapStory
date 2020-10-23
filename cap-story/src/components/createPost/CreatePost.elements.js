@@ -3,7 +3,6 @@ import { Button } from "../../global/globalStyles";
 import { Link } from "react-router-dom";
 
 export const Form = styled.form`
-  margin: 5% 0;
   display: flex;
   flex-direction: column;
   align-items: center;

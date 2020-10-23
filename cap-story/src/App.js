@@ -8,24 +8,28 @@ import Card from "./components/cardSection/Card";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import SingleStory from "./components/singleStory/SingleStory";
+import ScrollToTop from "./components/ScrollToTop";
+import Home from "./components/Home/Home";
+import { loadData } from "./axios/getData";
 
 function App() {
-  const state = useSelector((state) => state);
+  const state = useSelector((data) => data);
   const dispatch = useDispatch();
-
-  /*   useEffect(() => {
+  useEffect(() => {
     dispatch(loadData());
   }, []);
- */
 
   return (
     <Router>
+      <ScrollToTop />
       <GlobalStyle />
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <Header />
-          <Card />
+          <Home />
+        </Route>
+        <Route exact path="/stories">
+          <Card state={state} />
         </Route>
         <Route exact path="/create">
           <CreatePost />

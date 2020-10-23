@@ -1,39 +1,44 @@
 import styled from "styled-components";
-
-export const Section = styled.div`
-  background-image: url("https://wallpapershome.com/images/pages/pic_h/17753.jpg");
-  width: 100%;
-  height: 600px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-`;
-export const Body = styled.div`
+export const Header = styled.div`
   display: flex;
-  margin-left: 7%;
-  height: 100%;
+  height: 600px;
+`;
 
+export const HeadPhoto = styled.div`
+  background-image: url("https://cdn.mos.cms.futurecdn.net/gvQ9NhQP8wbbM32jXy4V3j.jpg");
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  order: ${(props) => (props.objOne ? 1 : 2)};
+`;
+export const HeadBody = styled.div`
+  display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
-  color: white;
-
+  align-items: center;
+  background-color: ${(props) => (props.objOne ? "white" : "black")};
+  color: ${(props) => (props.objOne ? "black" : "white")};
+  order: ${(props) => (props.objOne ? 2 : 1)};
   @media screen and (max-width: 960px) {
   }
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  width: 70%;
+`;
 export const Story = styled.p`
   opacity: 0.9;
-  width: 50%;
+
+  width: 70%;
 
   @media screen and (max-width: 960px) {
     width: 90%;
   }
 `;
 export const Footer = styled.div`
-  width: 20%;
   display: flex;
-  justify-content: space-between;
+  width: 70%;
   margin-top: 2%;
   cursor: pointer;
   @media screen and (max-width: 960px) {
