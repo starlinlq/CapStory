@@ -11,6 +11,7 @@ import SingleStory from "./components/singleStory/SingleStory";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./components/Home/Home";
 import { loadData } from "./axios/getData";
+import Stories from "./components/stories/Stories";
 
 function App() {
   const state = useSelector((data) => data);
@@ -29,7 +30,7 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/stories">
-          <Card state={state} />
+          <Stories />
         </Route>
         <Route exact path="/create">
           <CreatePost />

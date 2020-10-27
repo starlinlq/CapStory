@@ -1,6 +1,7 @@
 {
   "data": [
     {
+      "topic": "nature",
       "date": "10-20-2020",
       "author": "javier leon",
       "imgUrl": "https://images.wallpapersden.com/image/download/planet-earth-in-dark-universe_64056_2560x1440.jpg",
@@ -9,6 +10,7 @@
       "id": 1
     },
     {
+      "topic": "nature",
       "date": "10-20-2020",
       "author": "josh lenon",
       "imgUrl": "https://i.redd.it/az6lokgxhzc41.jpg",
@@ -41,6 +43,7 @@
       "id": 5
     },
     {
+      "topic": "city",
       "date": "9-21-2020",
       "author": "Susan Merit",
       "imgUrl": "https://wallpapershome.com/images/pages/pic_h/18677.jpg",
@@ -56,6 +59,7 @@
       "id": 9
     },
     {
+      "topic": "nature",
       "date": "9-21-2020",
       "author": "maria tomas",
       "imgUrl": "https://wallpapershome.com/images/pages/pic_h/20311.jpg",
@@ -72,6 +76,7 @@
       "id": 11
     },
     {
+      "topic": "city",
       "author": "Sim Coper",
       "imgUrl": "https://wallpapershome.com/images/pages/pic_h/22811.jpg",
       "title": "The batman of our time",
@@ -79,6 +84,7 @@
       "id": 12
     },
     {
+      "topic": "nature",
       "date": "9-21-2020",
       "author": "Miguel Rum",
       "imgUrl": "https://wallpapershome.com/images/pages/pic_h/18949.jpg",
@@ -87,6 +93,7 @@
       "id": 13
     },
     {
+      "topic": "Sci-Fi",
       "date": "9-21-2020",
       "author": "Dulce Molina",
       "imgUrl": "https://wallpapershome.com/images/pages/pic_h/21272.jpg",

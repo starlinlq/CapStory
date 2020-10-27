@@ -6,8 +6,8 @@ import objOne from "./Data";
 
 function Home() {
   const state = useSelector((data) => data);
-  const story = state.filter((data) => data.id <= 4);
-  const story2 = state.filter((data) => data.id > 10);
+  const story = state.slice(0, 4);
+  const story2 = state.slice(5, 9);
 
   return (
     <>
