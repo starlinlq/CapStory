@@ -7,13 +7,7 @@ function Login() {
   const [data = { email: "", password: "" }, setData] = useState();
   const dispatch = useDispatch();
 
-  /*  useEffect(() => {
-    dispatch(loadingUser());
-  }, []); */
-
   const state = useSelector((res) => res);
-
-  console.log(state);
 
   function getEmail(e) {
     setData({ ...data, email: e.target.value });

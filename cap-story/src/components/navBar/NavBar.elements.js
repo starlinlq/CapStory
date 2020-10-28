@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Button } from "../../global/globalStyles";
 
 export const Nav = styled.div`
   display: flex;
@@ -9,7 +10,12 @@ export const Nav = styled.div`
   align-items: center;
 `;
 
-export const NavLogo = styled.h2``;
+export const NavLogo = styled(Link)`
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+`;
 
 export const NavMenu = styled.ul`
   list-style: none;
@@ -104,7 +110,6 @@ export const Section = styled.div`
   width: 100%;
   box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
   border-radius: 5px;
-  height: 250px;
 `;
 
 export const DropBody = styled.div``;
@@ -122,5 +127,23 @@ export const DropHeader = styled.div`
 `;
 export const DropContent = styled.div`
   &:hover {
+  }
+`;
+export const Container = styled.div`
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+`;
+
+export const NavButton = styled(Link)`
+  padding: 5px 20px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    margin: 0;
+    border-color: lightsalmon;
   }
 `;

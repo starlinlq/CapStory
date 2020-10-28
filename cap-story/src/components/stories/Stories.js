@@ -8,7 +8,7 @@ function Stories() {
   const [filterState, setFilterState] = useState([]);
   const [finalIndex] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
-  const state = useSelector((data) => data);
+  const state = useSelector((data) => data.content);
 
   function setData() {
     setFilterState(state);
