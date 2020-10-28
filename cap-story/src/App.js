@@ -12,6 +12,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./components/Home/Home";
 import { loadData } from "./axios/getData";
 import Stories from "./components/stories/Stories";
+import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 
 function App() {
   const state = useSelector((data) => data);
@@ -32,6 +34,8 @@ function App() {
         <Route exact path="/stories">
           <Stories />
         </Route>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Route exact path="/create">
           <CreatePost />
         </Route>

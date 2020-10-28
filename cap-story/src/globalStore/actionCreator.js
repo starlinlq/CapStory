@@ -25,3 +25,21 @@ export const setData = (data) => {
     payLoad: data,
   };
 };
+
+export const setUser = (data) => {
+  console.log(data);
+  return {
+    type: "REGISTER_SUCCESS",
+    payload: {
+      user: data.user.displayName,
+      token: data.token,
+    },
+  };
+};
+
+export const loadUser = (data) => {
+  return {
+    type: "USER_LOADED",
+    payload: { user: data.displayName, id: data.id },
+  };
+};
