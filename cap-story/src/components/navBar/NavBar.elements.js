@@ -14,7 +14,7 @@ export const NavLogo = styled(Link)`
   text-decoration: none;
   font-size: 1.5rem;
   color: black;
-  font-weight: bold;
+  font-family: "Anton", sans-serif;
 `;
 
 export const NavMenu = styled.ul`

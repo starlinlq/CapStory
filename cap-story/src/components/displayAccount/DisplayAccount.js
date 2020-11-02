@@ -12,11 +12,20 @@ import {
 } from "./displayAccount.elemens";
 import Card from "../cardSection/Card";
 import { loadingUser } from "../../globalStore/auth/AuthActions";
+import { removeStory } from "../../axios/getData";
 
 function DisplayAccount() {
   let state = useSelector((data) => data.content);
   let user = useSelector((data) => data.user.id);
   let userData = state.filter((data) => data.userId === user);
+  console.log(userData);
+
+  function deletePost(post) {
+    let token = localStorage.getItem("auth-token");
+    const data = { token, post };
+    removeStory(data);
+    console.log(token);
+  }
 
   return (
     <>
@@ -34,8 +43,8 @@ function DisplayAccount() {
             <Section>Visited</Section>
             <Section>Comments</Section>
             <Section>
-              <Edit to={`/update/${data._id}`}>Edit</Edit>
-              <Delete>Delete</Delete>
+              <Edit to={`/create/${data._id}`}>Edit</Edit>
+              <Delete onClick={() => deletePost(data._id)}>Delete</Delete>
             </Section>
           </Options>
         ))}

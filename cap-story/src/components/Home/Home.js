@@ -16,6 +16,7 @@ function Home() {
       <Card state={story} />
       <HomeHeader objOne={objOne} />
       <Card state={story2} />
+      <HomeHeader />
     </>
   );
 }

@@ -21,3 +21,11 @@ export const loadData = () => {
       .catch((err) => console.log(err));
   };
 };
+export const removeStory = ({ token, post }) => {
+  axios
+    .delete("http://localhost:5000/posts/delete", {
+      headers: { "x-auth-token": token, postId: post },
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};

@@ -45,7 +45,7 @@ function NavBar() {
   return (
     <>
       <Nav>
-        <NavLogo to="/">CapStory</NavLogo>
+        <NavLogo to="/">MEMORIES</NavLogo>
         <NavMenu icon={icon}>
           <NavItem>
             <NavLinks to="/">HOME</NavLinks>

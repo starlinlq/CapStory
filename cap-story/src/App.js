@@ -36,7 +36,8 @@ function App() {
         <Route path="/data/:id" component={SingleStory} />
         <Route exact path="/" component={Home} />
         <Route path="/stories" component={Stories} />
-        <Route path="/create" component={CreatePost} />
+        <Route exact path="/create/:id" component={CreatePost} />
+        <Route exact path="/create" component={CreatePost} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route patch="/myaccount" component={DisplayAccount} />

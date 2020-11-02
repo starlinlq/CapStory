@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { savePost } from "../../axios/getData";
 import { useSelector } from "react-redux";
 import {
@@ -10,10 +10,13 @@ import {
   TextArea,
   TopicButton,
 } from "./CreatePost.elements";
-import { set } from "mongoose";
 
-function CreatePost() {
+function CreatePost({ match }) {
   const token = useSelector((state) => state.user.token);
+  const [update, setUpdate] = useState(false);
+  const modifyStory = useSelector((story) => story.content).filter(
+    (data) => data._id === match.params.id
+  );
 
   const [
     data = {
@@ -26,6 +29,29 @@ function CreatePost() {
     },
     setData,
   ] = useState();
+
+  const [singleStory] = modifyStory;
+
+  useEffect(() => {
+    if (match.params.id && singleStory) {
+      setUpdate(true);
+      setData({
+        ...data,
+        author: singleStory.author,
+        imgUrl: singleStory.imgUrl,
+        title: singleStory.title,
+        story: singleStory.story,
+      });
+    } else {
+      setUpdate(false);
+      setData({
+        author: "",
+        imgUrl: "",
+        title: "",
+        story: "",
+      });
+    }
+  }, [singleStory]);
 
   function handleAuthor(e) {
     setData({ ...data, author: e.target.value });
@@ -46,7 +72,6 @@ function CreatePost() {
     setData({ ...data, story: e.target.value });
   }
 
-  console.log(data);
   function handleForm(e) {
     var today = new window.Date();
     var newDate =
@@ -108,7 +133,11 @@ function CreatePost() {
         />
       </Section>
       <Section>
-        <FormButton to="/">Submit</FormButton>
+        {update ? (
+          <FormButton to="/">Update</FormButton>
+        ) : (
+          <FormButton to="/">Submit</FormButton>
+        )}
       </Section>
     </Form>
   );
