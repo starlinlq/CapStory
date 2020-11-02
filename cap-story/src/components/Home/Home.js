@@ -6,8 +6,9 @@ import objOne from "./Data";
 
 function Home() {
   const state = useSelector((data) => data.content);
+
   const story = state.slice(0, 4);
-  const story2 = state.slice(5, 9);
+  const story2 = state.slice(0, 4);
 
   return (
     <>

@@ -29,3 +29,17 @@ export const Label = styled.label`
   font-size: 20px;
   font-family: "Roboto", sans-serif;
 `;
+
+export const TopicButton = styled.div`
+  display: inline-block;
+  margin: 4% 1%;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-color: lightgray;
+
+  &:hover {
+    background-color: lightgray;
+  }
+`;

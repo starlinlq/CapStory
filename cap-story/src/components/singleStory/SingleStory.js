@@ -4,7 +4,7 @@ import { Header, Section, Body, Title, Content } from "./singleStory.elements";
 function SingleStory({ match }) {
   const state = useSelector((state) => state.content);
   const id = match.params.id;
-  const data = state.filter((item) => item.id == id).map((item) => item);
+  const data = state.filter((item) => item._id === id).map((item) => item);
 
   return (
     <>

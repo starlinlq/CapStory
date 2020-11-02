@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { setUser, loadUser } from "../actionCreator";
+import { setUser, loadUser, logingUser } from "../actionCreator";
 
 export const registerUser = (data) => {
   return (dispatch) => {
@@ -29,6 +29,18 @@ export const registerUser = (data) => {
       .catch((err) => {
         dispatch({ type: "REGISTER_FAIL" });
       });
+  };
+};
+
+export const logInUser = ({ email, password }) => {
+  return (dispatch) => {
+    dispatch({ type: "USER_LOADING" });
+    axios
+      .post("http://localhost:5000/users/login", { email, password })
+      .then((res) => {
+        dispatch(logingUser(res.data));
+      })
+      .catch((err) => dispatch({ type: "LOGIN_FAIL" }));
   };
 };
 export const loadingUser = () => {

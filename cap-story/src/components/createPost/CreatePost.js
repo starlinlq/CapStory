@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { savePost } from "../../axios/getData";
+import { useSelector } from "react-redux";
 import {
   Section,
   Input,
@@ -7,26 +8,31 @@ import {
   Form,
   FormButton,
   TextArea,
+  TopicButton,
 } from "./CreatePost.elements";
+import { set } from "mongoose";
 
 function CreatePost() {
-  var today = new window.Date();
-  var newDate =
-    today.getMonth() + "-" + (today.getDate() + 1) + "-" + today.getFullYear();
+  const token = useSelector((state) => state.user.token);
 
   const [
     data = {
-      date: newDate,
+      date: "",
       author: "",
       imgUrl: "",
       title: "",
       story: "",
+      topic: "other",
     },
     setData,
   ] = useState();
 
   function handleAuthor(e) {
     setData({ ...data, author: e.target.value });
+  }
+
+  function setTopic(selectedTopic) {
+    setData({ ...data, topic: selectedTopic });
   }
 
   function handleTitle(e) {
@@ -39,8 +45,28 @@ function CreatePost() {
   function handleStory(e) {
     setData({ ...data, story: e.target.value });
   }
+
+  console.log(data);
   function handleForm(e) {
-    savePost(data);
+    var today = new window.Date();
+    var newDate =
+      today.getMonth() +
+      "-" +
+      (today.getDate() + 1) +
+      "-" +
+      today.getFullYear();
+
+    savePost({
+      post: {
+        date: newDate,
+        author: data.author,
+        imgUrl: data.imgUrl,
+        title: data.title,
+        story: data.story,
+        topic: data.topic,
+      },
+      token,
+    });
     setData({
       author: "",
       imgUrl: "",
@@ -62,6 +88,15 @@ function CreatePost() {
       <Section>
         <Label>title</Label>
         <Input value={data.title} onChange={handleTitle} />
+      </Section>
+      <Section>
+        <Label>Topic</Label>
+        <TopicButton onClick={() => setTopic("nature")}>Nature</TopicButton>
+        <TopicButton onClick={() => setTopic("city")}>City</TopicButton>
+        <TopicButton onClick={() => setTopic("sci-fi")}>Sci-Fi</TopicButton>
+        <TopicButton onClick={() => setTopic("life")}>Life</TopicButton>
+        <TopicButton onClick={() => setTopic("universe")}>Universe</TopicButton>
+        <TopicButton onClick={() => setTopic("other")}>Other</TopicButton>
       </Section>
       <Section>
         <Label>Story</Label>

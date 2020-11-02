@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Label, Button } from "./login.elements";
-import { loadingUser } from "../../globalStore/auth/AuthActions";
+import { logInUser } from "../../globalStore/auth/AuthActions";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+  const history = useHistory();
   const [data = { email: "", password: "" }, setData] = useState();
   const dispatch = useDispatch();
-
-  const state = useSelector((res) => res);
 
   function getEmail(e) {
     setData({ ...data, email: e.target.value });
@@ -18,7 +18,8 @@ function Login() {
   }
 
   function sendData(e) {
-    e.preventDefault();
+    dispatch(logInUser(data));
+    history.push("/");
   }
 
   return (
@@ -26,7 +27,7 @@ function Login() {
       <Label>Email</Label>
       <Input onChange={getEmail} value={data.email} />
       <Label>Password</Label>
-      <Input onChange={getPassword} value={data.password} />
+      <Input onChange={getPassword} value={data.password} type="password" />
       <Button>Log In</Button>
     </Form>
   );

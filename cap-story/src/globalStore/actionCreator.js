@@ -43,3 +43,13 @@ export const loadUser = (data) => {
     payload: { user: data.displayName, id: data.id },
   };
 };
+
+export const logingUser = (data) => {
+  return {
+    type: "LOGIN_SUCCESS",
+    payload: {
+      token: data.token,
+      user: data.user,
+    },
+  };
+};

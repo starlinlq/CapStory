@@ -15,9 +15,11 @@ import Stories from "./components/stories/Stories";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import { loadingUser } from "./globalStore/auth/AuthActions";
+import DisplayAccount from "./components/displayAccount/DisplayAccount";
+import UpdateStory from "./components/editStory/UpdateStory";
 
 function App() {
-  const state = useSelector((data) => data);
+  const state = useSelector((data) => data.user);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadData());
@@ -30,18 +32,14 @@ function App() {
       <GlobalStyle />
       <NavBar />
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/stories">
-          <Stories />
-        </Route>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/create">
-          <CreatePost />
-        </Route>
+        <Route path="/update/:id" component={UpdateStory} />
         <Route path="/data/:id" component={SingleStory} />
+        <Route exact path="/" component={Home} />
+        <Route path="/stories" component={Stories} />
+        <Route path="/create" component={CreatePost} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route patch="/myaccount" component={DisplayAccount} />
       </Switch>
       <Footer />
     </Router>

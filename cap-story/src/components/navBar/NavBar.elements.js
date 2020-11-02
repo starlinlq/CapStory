@@ -131,7 +131,7 @@ export const DropContent = styled.div`
 `;
 export const Container = styled.div`
   display: flex;
-  width: 20%;
+  width: 21%;
   justify-content: space-between;
 `;
 
@@ -145,5 +145,70 @@ export const NavButton = styled(Link)`
   &:hover {
     margin: 0;
     border-color: lightsalmon;
+  }
+`;
+
+export const UserAccount = styled(Link)`
+  text-decoration: none;
+  color: black;
+  border: 1px solid lightblue;
+  padding: 5px 10px;
+  height: 100%;
+  border-radius: 5px;
+  &:hover {
+    border-color: blue;
+  }
+`;
+export const UserMenu = styled.div`
+  display: none;
+  position: absolute;
+  top: 32px;
+  width: 150px;
+
+  border: 1px solid lightgrey;
+  background-color: white;
+`;
+
+export const UserSection = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:hover {
+    ${UserMenu} {
+      display: block;
+    }
+  }
+`;
+export const UserButton = styled.button`
+  padding: 5px 20px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    margin: 0;
+    border-color: lightsalmon;
+  }
+`;
+
+export const DropButton = styled(Link)`
+  list-style: none;
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  background-color: white;
+
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    margin: 0;
+    border-color: lightsalmon;
+    border: 1px solid lightgrey;
   }
 `;
