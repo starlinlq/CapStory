@@ -30,12 +30,13 @@ export const Title = styled.h1`
 `;
 
 export const CommentSection = styled.div`
-  margin-bottom: 7%;
   display: flex;
   justify-content: center;
 `;
 export const CreateComment = styled.div`
-  width: 50%;
+  width: 100%;
+  margin: 0 15%;
+  margin-bottom: 2%;
 `;
 export const Input = styled.input`
   padding: 8px 0;
@@ -74,5 +75,35 @@ export const Button = styled.button`
   }
 `;
 
-export const DisplayComment = styled.div``;
+export const DisplayComment = styled.div`
+  margin: 0 15%;
+  border: 1px solid #f1f6f9;
+  border: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2%;
+`;
 export const Form = styled.form``;
+export const CommentHead = styled.div`
+  display: flex;
+  background-color: #f4f4f2;
+  align-items: center;
+  padding: 1% 0;
+`;
+export const CommentContent = styled.p`
+  padding: 1.5% 0;
+  line-height: 2;
+  margin: 0 2.5%;
+  text-align: justify;
+`;
+export const ComentAuthor = styled.h3`
+  color: blue;
+  cursor: pointer;
+  padding: 0 10px;
+
+  &:hover {
+    color: black;
+  }
+`;
+export const CommentDate = styled.h5`
+  color: #bbbfca;
+`;

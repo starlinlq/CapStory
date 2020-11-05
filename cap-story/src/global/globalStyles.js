@@ -11,14 +11,11 @@ export const GlobalStyle = createGlobalStyle`
 
 html{
   min-height: 100vh;
- 
 }
 
 
+
 body{
-  position: relative;
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
   margin: 0 15%;
   font-family: 'Roboto', sans-serif;

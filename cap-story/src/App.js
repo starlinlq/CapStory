@@ -14,6 +14,8 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import { loadingUser } from "./globalStore/auth/AuthActions";
 import DisplayAccount from "./components/displayAccount/DisplayAccount";
+import styled from "styled-components";
+import "./index.css";
 
 function App() {
   const state = useSelector((data) => data.user);
@@ -23,23 +25,31 @@ function App() {
     dispatch(loadingUser());
   }, []);
 
+  const Content = styled.div`
+    flex: 1 0 auto;
+  `;
+
   return (
-    <Router>
-      <ScrollToTop />
+    <>
       <GlobalStyle />
-      <NavBar />
-      <Switch>
-        <Route path="/data/:id" component={SingleStory} />
-        <Route exact path="/" component={Home} />
-        <Route path="/stories" component={Stories} />
-        <Route exact path="/create/:id" component={CreatePost} />
-        <Route exact path="/create" component={CreatePost} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route patch="/myaccount" component={DisplayAccount} />
-      </Switch>
+      <Content>
+        <Router>
+          <ScrollToTop />
+          <NavBar />
+          <Switch>
+            <Route path="/data/:id" component={SingleStory} />
+            <Route exact path="/" component={Home} />
+            <Route path="/stories" component={Stories} />
+            <Route exact path="/create/:id" component={CreatePost} />
+            <Route exact path="/create" component={CreatePost} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route patch="/myaccount" component={DisplayAccount} />
+          </Switch>
+        </Router>
+      </Content>
       <Footer />
-    </Router>
+    </>
   );
 }
 

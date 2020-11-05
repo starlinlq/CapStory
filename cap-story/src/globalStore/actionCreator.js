@@ -1,4 +1,5 @@
 import { ADD_POST, ADD_DATA, FIND_DATA } from "./actionsNames";
+import axios from "axios";
 
 export const newPost = (data) => {
   return {
@@ -59,5 +60,29 @@ export const setUrl = (url) => {
   return {
     type: "ADD_URL",
     payload: url,
+  };
+};
+
+export const postComment = (data) => {
+  return (dispatch) => {
+    axios
+      .post(
+        "http://localhost:5000/comments",
+        { ...data },
+        { headers: { "x-auth-token": data.token } }
+      )
+      .then((res) => dispatch({ type: "ADD_COMMENT", payload: res.data }))
+      .catch((err) => console.log(err));
+  };
+};
+
+export const getComments = () => {
+  return (dispatch) => {
+    axios
+      .get("http://localhost:5000/comments/all")
+      .then((res) => dispatch({ type: "GET_COMMENTS", payload: res.data }))
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };

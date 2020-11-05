@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import {
@@ -14,11 +14,12 @@ import {
   Button,
   DisplayComment,
   Form,
-  CommentTitle,
+  CommentHead,
   CommentContent,
   ComentAuthor,
   CommentDate,
 } from "./singleStory.elements";
+import { postComment, getComments } from "../../globalStore/actionCreator";
 function SingleStory({ match }) {
   const [newComment, setNewComment] = useState(false);
   const state = useSelector((state) => state.content);
@@ -29,19 +30,27 @@ function SingleStory({ match }) {
   const { register, handleSubmit, errors } = useForm();
   const newDate = new Date();
   const createdAt = `${newDate.getMonth()}/${newDate.getDay()}/${newDate.getFullYear()}`;
+  const dispatch = useDispatch();
+  const commentData = useSelector((state) => state.comments);
 
-  const comments = [];
+  useEffect(() => {
+    dispatch(getComments());
+  }, []);
+
+  /*  useEffect(() => {}, [commentData]); */
 
   function handleComment({ title, comment }) {
+    setNewComment(false);
+    const token = localStorage.getItem("auth-token");
     const userComment = {
-      title,
       comment,
       userName,
       createdAt: createdAt,
       userId,
       postId: id,
+      token,
     };
-    comments.push(userComment);
+    dispatch(postComment(userComment));
   }
 
   return (
@@ -76,8 +85,20 @@ function SingleStory({ match }) {
                 </Button>
               )}
             </CreateComment>
-            <DisplayComment></DisplayComment>
           </CommentSection>
+          <Section>
+            {commentData
+              .filter((data) => data.postId === id)
+              .map((data) => (
+                <DisplayComment key={data._id}>
+                  <CommentHead>
+                    <ComentAuthor>{data.userName}</ComentAuthor>
+                    <CommentDate>{data.createdAt}</CommentDate>
+                  </CommentHead>
+                  <CommentContent>{data.comment}</CommentContent>
+                </DisplayComment>
+              ))}
+          </Section>
         </Section>
       ))}
     </>
