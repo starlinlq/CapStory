@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import HomeHeader from "../homeHeader/HomeHeader";
 import Card from "../cardSection/Card";
 import objOne from "./Data";
+import { Trending, HeadTrending } from "./home.elements";
+import { HiOutlineTrendingUp } from "react-icons/hi";
 
 function Home() {
   const state = useSelector((data) => data.content);

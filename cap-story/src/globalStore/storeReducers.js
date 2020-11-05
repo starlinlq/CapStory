@@ -11,4 +11,15 @@ const contentReducer = (state = initialState, action) => {
   }
 };
 
+export const urlReducer = (state = { url: "" }, action) => {
+  switch (action.type) {
+    case "ADD_URL": {
+      return { ...state, url: action.payload };
+    }
+
+    default:
+      return state;
+  }
+};
+
 export default contentReducer;

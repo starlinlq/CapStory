@@ -11,9 +11,15 @@ import {
   TopicButton,
 } from "./CreatePost.elements";
 
+import Progressbar from "../progressBar/ProgressBar";
+
 function CreatePost({ match }) {
   const token = useSelector((state) => state.user.token);
   const [update, setUpdate] = useState(false);
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+  const test = useSelector((test) => test.url.url);
+
   const modifyStory = useSelector((story) => story.content).filter(
     (data) => data._id === match.params.id
   );
@@ -66,7 +72,15 @@ function CreatePost({ match }) {
   }
 
   function handleImgUrl(e) {
-    setData({ ...data, imgUrl: e.target.value });
+    const types = ["image/png", "image/jpeg", "image/jpg"];
+    let selected = e.target.files[0];
+    if (selected && types.includes(selected.type)) {
+      setFile(selected);
+      setError("");
+    } else {
+      setFile(null);
+      setError("Please select an image file (png, jpeg or jpg)");
+    }
   }
   function handleStory(e) {
     setData({ ...data, story: e.target.value });
@@ -85,7 +99,7 @@ function CreatePost({ match }) {
       post: {
         date: newDate,
         author: data.author,
-        imgUrl: data.imgUrl,
+        imgUrl: test,
         title: data.title,
         story: data.story,
         topic: data.topic,
@@ -107,8 +121,11 @@ function CreatePost({ match }) {
         <Input value={data.author} onChange={handleAuthor} />
       </Section>
       <Section>
-        <Label>Image url</Label>
-        <Input value={data.imgUrl} onChange={handleImgUrl} />
+        <Label>Image</Label>
+        <Input type="file" onChange={handleImgUrl} />
+
+        {file && <Progressbar file={file} setFile={setFile} />}
+        {error && <Label>Please select an image file (png, jpeg or jpg)</Label>}
       </Section>
       <Section>
         <Label>title</Label>

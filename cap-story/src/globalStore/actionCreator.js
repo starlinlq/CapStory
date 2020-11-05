@@ -53,3 +53,11 @@ export const logingUser = (data) => {
     },
   };
 };
+
+export const setUrl = (url) => {
+  console.log(url);
+  return {
+    type: "ADD_URL",
+    payload: url,
+  };
+};

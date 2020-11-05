@@ -4,8 +4,6 @@ import NavBar from "./components/navBar/NavBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CreatePost from "./components/createPost/CreatePost";
 import { GlobalStyle } from "./global/globalStyles";
-import Card from "./components/cardSection/Card";
-import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import SingleStory from "./components/singleStory/SingleStory";
 import ScrollToTop from "./components/ScrollToTop";
@@ -16,7 +14,6 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import { loadingUser } from "./globalStore/auth/AuthActions";
 import DisplayAccount from "./components/displayAccount/DisplayAccount";
-import UpdateStory from "./components/editStory/UpdateStory";
 
 function App() {
   const state = useSelector((data) => data.user);
@@ -32,7 +29,6 @@ function App() {
       <GlobalStyle />
       <NavBar />
       <Switch>
-        <Route path="/update/:id" component={UpdateStory} />
         <Route path="/data/:id" component={SingleStory} />
         <Route exact path="/" component={Home} />
         <Route path="/stories" component={Stories} />
