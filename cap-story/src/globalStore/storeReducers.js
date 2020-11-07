@@ -25,10 +25,10 @@ export const urlReducer = (state = { url: "" }, action) => {
 export const commentReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_COMMENT": {
-      return [...state, action.payload];
+      return [action.payload, ...state];
     }
     case "GET_COMMENTS": {
-      return [...action.payload];
+      return [...action.payload.reverse()];
     }
     case "DELETE_COMMENT": {
       return state.filter((data) => data.postId !== action.payload.postId);
