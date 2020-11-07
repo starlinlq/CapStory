@@ -14,11 +14,11 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import { loadingUser } from "./globalStore/auth/AuthActions";
 import DisplayAccount from "./components/displayAccount/DisplayAccount";
+import DisplayUser from "./components/displayUser/DisplayUser";
 import styled from "styled-components";
 import "./index.css";
 
 function App() {
-  const state = useSelector((data) => data.user);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadData());
@@ -45,7 +45,8 @@ function App() {
             <Route exact path="/login/:id" component={Login} />
             <Route exact path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route patch="/myaccount" component={DisplayAccount} />
+            <Route exact path="/myaccount" component={DisplayAccount} />
+            <Route exact path="/user" component={DisplayUser} />
           </Switch>
         </Router>
       </Content>
