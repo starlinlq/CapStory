@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Header = styled.div`
   height: 600px;
@@ -106,4 +107,31 @@ export const ComentAuthor = styled.h3`
 `;
 export const CommentDate = styled.h5`
   color: #bbbfca;
+`;
+
+export const CommentAuth = styled.div`
+  margin: 15px 0;
+  font-size: 1.2rem;
+  border: 1px solid lightgray;
+  padding: 5px;
+  border-radius: 5px;
+`;
+export const Login = styled(Link)`
+  text-decoration: none;
+
+  &:hover {
+    color: blue;
+  }
+`;
+export const CommentBody = styled.p``;
+export const Delete = styled.div`
+  margin-left: auto;
+  font-size: 1.2rem;
+  color: red;
+  margin-right: 25px;
+  cursor: pointer;
+
+  &:hover {
+    color: salmon;
+  }
 `;

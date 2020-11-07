@@ -42,7 +42,8 @@ function App() {
             <Route path="/stories" component={Stories} />
             <Route exact path="/create/:id" component={CreatePost} />
             <Route exact path="/create" component={CreatePost} />
-            <Route path="/login" component={Login} />
+            <Route exact path="/login/:id" component={Login} />
+            <Route exact path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route patch="/myaccount" component={DisplayAccount} />
           </Switch>

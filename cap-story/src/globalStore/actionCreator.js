@@ -86,3 +86,23 @@ export const getComments = () => {
       });
   };
 };
+
+export function deleteComment(post_id) {
+  return { type: "DELETE_COMMENT", payload: { postId: post_id } };
+}
+
+export const removeComment = (post_id, token) => {
+  return (dispatch) => {
+    axios
+      .post(
+        "http://localhost:5000/comments/delete",
+        { postId: post_id },
+
+        {
+          headers: { "x-auth-token": token },
+        }
+      )
+      .then((res) => dispatch(deleteComment(post_id)))
+      .catch((err) => console.log(err));
+  };
+};

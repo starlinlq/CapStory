@@ -4,10 +4,11 @@ import { Form, Input, Label, Button } from "./login.elements";
 import { logInUser } from "../../globalStore/auth/AuthActions";
 import { useHistory } from "react-router-dom";
 
-function Login() {
+function Login({ match }) {
   const history = useHistory();
   const [data = { email: "", password: "" }, setData] = useState();
   const dispatch = useDispatch();
+  console.log(match);
 
   function getEmail(e) {
     setData({ ...data, email: e.target.value });
@@ -19,7 +20,11 @@ function Login() {
 
   function sendData(e) {
     dispatch(logInUser(data));
-    history.push("/");
+    if (match.params.id) {
+      history.push(`/data/${match.params.id}`);
+    } else {
+      history.push("/");
+    }
   }
 
   return (
