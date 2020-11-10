@@ -21,7 +21,7 @@ export const BioSec = styled.div`
   font-size: 1.2rem;
 `;
 export const Img = styled.img`
-  background-image: url("https://eftm.com/wp-content/uploads/2019/04/selfie-iphone.jpg");
+  background-image: url(${({ url }) => `${url}`});
   height: 350px;
   width: 350px;
   background-position: center;
@@ -82,7 +82,7 @@ export const EditComment = styled.div`
   padding: 2% 0;
 `;
 
-export const EditBody = styled.div`
+export const EditBody = styled.form`
   width: 80%;
   margin: auto;
 `;
@@ -107,6 +107,21 @@ export const Label = styled.label`
 export const SaveButton = styled.button`
   margin-top: 15px;
   background: none;
+  border: 1px solid black;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 3px;
+
+  &:hover {
+    border-color: salmon;
+  }
+`;
+export const CancelButton = styled.button`
+  margin-top: 15px;
+  background: none;
+  position: relative;
+  bottom: 42.2px;
+  left: 179px;
   border: 1px solid black;
   padding: 5px 10px;
   cursor: pointer;

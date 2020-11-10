@@ -116,7 +116,9 @@ function SingleStory({ match }) {
           .map((data) => (
             <DisplayComment key={data._id}>
               <CommentHead>
-                <ComentAuthor>{data.userName}</ComentAuthor>
+                <ComentAuthor to={`/user/${data.userId}`}>
+                  {data.userName}
+                </ComentAuthor>
                 <CommentDate>{data.createdAt}</CommentDate>
                 {userAuthenticated && data.userId === userId && (
                   <Delete onClick={() => deleteComment(data._id)}>

@@ -96,10 +96,12 @@ export const CommentContent = styled.p`
   margin: 0 2.5%;
   text-align: justify;
 `;
-export const ComentAuthor = styled.h3`
+export const ComentAuthor = styled(Link)`
   color: blue;
   cursor: pointer;
   padding: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
 
   &:hover {
     color: black;

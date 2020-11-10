@@ -46,7 +46,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route exact path="/myaccount" component={DisplayAccount} />
-            <Route exact path="/user" component={DisplayUser} />
+            <Route exact path="/user/:id" component={DisplayUser} />
           </Switch>
         </Router>
       </Content>

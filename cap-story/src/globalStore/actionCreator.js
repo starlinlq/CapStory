@@ -38,10 +38,10 @@ export const setUser = (data) => {
   };
 };
 
-export const loadUser = (data) => {
+export const loadUser = ({ displayName, id, ...data }) => {
   return {
     type: "USER_LOADED",
-    payload: { user: data.displayName, id: data.id },
+    payload: { user: displayName, id, ...data },
   };
 };
 
@@ -103,6 +103,29 @@ export const removeComment = (post_id, token) => {
         }
       )
       .then((res) => dispatch(deleteComment(post_id)))
+      .catch((err) => console.log(err));
+  };
+};
+
+export const handleUserUpdate = ({ token, ...data }) => {
+  return (dispatch) => {
+    axios
+      .post(
+        "http://localhost:5000/users/update",
+        { ...data },
+        { headers: { "x-auth-token": token } }
+      )
+      .then((res) => {
+        if (res.data) {
+          axios
+            .get("http://localhost:5000/users", {
+              headers: { "x-auth-token": token },
+            })
+            .then((res) => {
+              dispatch(loadUser(res.data));
+            });
+        }
+      })
       .catch((err) => console.log(err));
   };
 };

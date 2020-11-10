@@ -29,6 +29,7 @@ function NavBar() {
   const data = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
   const history = useHistory();
+  const currentUserId = useSelector((state) => state.user.id);
 
   /* const [mobileMenu, setMobileMenu] = useState(false); */
   const [icon, setIcon] = useState(false);
@@ -85,8 +86,10 @@ function NavBar() {
               <UserSection>
                 <UserAccount to="/myaccount">My Account</UserAccount>
                 <UserMenu>
-                  <DropButton to="/myaccount">My Stories</DropButton>
-                  <DropButton to="/mystories">Liked Stories</DropButton>
+                  <DropButton to="/myAccount">My Stories</DropButton>
+                  <DropButton to={`/user/${currentUserId}`}>
+                    My Profile
+                  </DropButton>
                   <DropButton onClick={logOut}>Log Out</DropButton>
                 </UserMenu>
               </UserSection>
