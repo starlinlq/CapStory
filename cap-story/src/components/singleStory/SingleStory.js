@@ -42,10 +42,10 @@ function SingleStory({ match }) {
   const userAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const token = localStorage.getItem("auth-token");
 
-  useEffect(() => {
+  /*   useEffect(() => {
     dispatch(getComments());
   }, []);
-
+ */
   /*  useEffect(() => {}, [commentData]); */
 
   function handleComment({ comment }) {

@@ -19,8 +19,9 @@ import {
   UserSection,
   UserAccount,
   UserMenu,
-  UserButton,
+  NavContainer,
   DropButton,
+  buttonSec,
 } from "./NavBar.elements";
 
 import { BiMenu } from "react-icons/bi";
@@ -31,7 +32,6 @@ function NavBar() {
   const history = useHistory();
   const currentUserId = useSelector((state) => state.user.id);
 
-  /* const [mobileMenu, setMobileMenu] = useState(false); */
   const [icon, setIcon] = useState(false);
 
   function handleIcon() {
@@ -48,59 +48,66 @@ function NavBar() {
       <Nav>
         <NavLogo to="/">MEMORIES</NavLogo>
         <NavMenu icon={icon}>
-          <NavItem>
-            <NavLinks to="/">HOME</NavLinks>
-          </NavItem>
-          <NavItem>
-            <NavLinks to="/stories">
-              STORIES
-              <DropMenu>
-                <Section>
-                  <DropBody>
-                    <DropHeader></DropHeader>
-                    <DropContent>Freedom</DropContent>
-                  </DropBody>
-                  <DropBody>
-                    <DropHeader></DropHeader>
-                    <DropContent>Places</DropContent>
-                  </DropBody>
-                  <DropBody>
-                    <DropHeader></DropHeader>
-                    <DropContent>Emotions</DropContent>
-                  </DropBody>
-                </Section>
-              </DropMenu>
-            </NavLinks>
-          </NavItem>
-          <NavItem>
-            <NavLinks to="/">FEATURES</NavLinks>
-          </NavItem>
+          <NavContainer>
+            <NavItem>
+              <NavLinks to="/">HOME</NavLinks>
+            </NavItem>
+            <NavItem>
+              <NavLinks to="/stories">
+                STORIES
+                <DropMenu>
+                  <Section>
+                    <DropBody>
+                      <DropHeader></DropHeader>
+                      <DropContent>Freedom</DropContent>
+                    </DropBody>
+                    <DropBody>
+                      <DropHeader></DropHeader>
+                      <DropContent>Places</DropContent>
+                    </DropBody>
+                    <DropBody>
+                      <DropHeader></DropHeader>
+                      <DropContent>Emotions</DropContent>
+                    </DropBody>
+                  </Section>
+                </DropMenu>
+              </NavLinks>
+            </NavItem>
+            <NavItem>
+              <NavLinks to="/">FEATURES</NavLinks>
+            </NavItem>
+          </NavContainer>
+
+          <Container>
+            {data ? (
+              <>
+                <buttonSec>
+                  <NavButton to="/create">Create</NavButton>
+                </buttonSec>
+                <buttonSec>
+                  <UserSection>
+                    <UserAccount to="/myaccount"> Account</UserAccount>
+                    <UserMenu>
+                      <DropButton to="/myAccount">Memories</DropButton>
+                      <DropButton to={`/user/${currentUserId}`}>
+                        Profile
+                      </DropButton>
+                      <DropButton onClick={logOut}>Sign Out</DropButton>
+                    </UserMenu>
+                  </UserSection>
+                </buttonSec>
+              </>
+            ) : (
+              <>
+                <NavButton to="/register">Register</NavButton>
+                <NavButton to="/login">Sign In</NavButton>{" "}
+              </>
+            )}
+          </Container>
         </NavMenu>
         <NavIcon onClick={handleIcon}>
           {icon ? <CgCloseR /> : <BiMenu />}
         </NavIcon>
-        <Container>
-          {data ? (
-            <>
-              <NavButton to="/create">CREATE</NavButton>
-              <UserSection>
-                <UserAccount to="/myaccount">My Account</UserAccount>
-                <UserMenu>
-                  <DropButton to="/myAccount">My Stories</DropButton>
-                  <DropButton to={`/user/${currentUserId}`}>
-                    My Profile
-                  </DropButton>
-                  <DropButton onClick={logOut}>Log Out</DropButton>
-                </UserMenu>
-              </UserSection>
-            </>
-          ) : (
-            <>
-              <NavButton to="/register">Sign Up</NavButton>
-              <NavButton to="/login">Log In</NavButton>{" "}
-            </>
-          )}
-        </Container>
       </Nav>
     </>
   );

@@ -28,8 +28,6 @@ import {
   CancelButton,
 } from "./displayUser.elements";
 import Card from "../cardSection/Card";
-import { set } from "mongoose";
-import Axios from "axios";
 
 function DisplayUser({ match }) {
   const [displayData, setDisplayData] = useState([]);
@@ -37,7 +35,7 @@ function DisplayUser({ match }) {
   const [error, setError] = useState(null);
   const { register, handleSubmit, errors } = useForm();
   const [edit, setEdit] = useState(false);
-  const state = useSelector((state) => state.content);
+  const stateData = useSelector((state) => state.content);
   const dispatch = useDispatch();
   const userId = useSelector((data) => {
     return { userId: data.user.id, token: data.user.token };
@@ -50,6 +48,8 @@ function DisplayUser({ match }) {
     (state) => state.user.isAuthenticated
   );
 
+  const state = stateData.filter((data) => data.userId === displayUserId);
+
   useEffect(() => {
     axios
       .post("http://localhost:5000/users/info", { userId: displayUserId })
@@ -59,7 +59,7 @@ function DisplayUser({ match }) {
       .catch((err) => console.log(err));
   }, [displayUserId]);
 
-  const userData = useSelector((data) => [
+  /* const userData = useSelector((data) => [
     {
       name: data.user.name,
       bio: data.user.bio,
@@ -67,7 +67,7 @@ function DisplayUser({ match }) {
       interest: data.user.interest,
       imgUlr: data.user.photoUrl,
     },
-  ]);
+  ]); */
 
   function makeChange() {
     setEdit(true);
@@ -94,6 +94,7 @@ function DisplayUser({ match }) {
   function handleCancel() {
     setEdit(false);
   }
+  console.log(displayData);
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -123,23 +124,21 @@ function DisplayUser({ match }) {
             <Img url={data.photoUrl} />
           </PhotoSec>
           <BioSec>
-            <>
-              <Section>
-                <UserName>{data.name}</UserName>
-              </Section>
-              <Section>
-                <Title>Bio</Title>
-                <Bio>{data.bio}</Bio>
-              </Section>
-              <Section>
-                <Title>Location</Title>
-                <Location>{data.location}</Location>
-              </Section>
-              <Section>
-                <Title>Interest</Title>
-                <Interest>{data.interest}</Interest>
-              </Section>
-            </>
+            <Section>
+              <UserName>{data.displayName}</UserName>
+            </Section>
+            <Section>
+              <Title>Bio</Title>
+              <Bio>{data.bio}</Bio>
+            </Section>
+            <Section>
+              <Title>Location</Title>
+              <Location>{data.location}</Location>
+            </Section>
+            <Section>
+              <Title>Interest</Title>
+              <Interest>{data.interest}</Interest>
+            </Section>
           </BioSec>
           {isUserAuthenticated && userId.userId === displayUserId && (
             <Button onClick={makeChange}>Edit Bio</Button>

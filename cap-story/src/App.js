@@ -16,6 +16,7 @@ import { loadingUser } from "./globalStore/auth/AuthActions";
 import DisplayAccount from "./components/displayAccount/DisplayAccount";
 import DisplayUser from "./components/displayUser/DisplayUser";
 import styled from "styled-components";
+import { getComments } from "./globalStore/actionCreator";
 import "./index.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   useEffect(() => {
     dispatch(loadData());
     dispatch(loadingUser());
+    dispatch(getComments());
   }, []);
 
   const Content = styled.div`

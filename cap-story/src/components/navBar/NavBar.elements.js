@@ -4,9 +4,8 @@ import { Button } from "../../global/globalStyles";
 
 export const Nav = styled.div`
   display: flex;
-  margin: 0 10%;
+  margin: 0 5%;
   padding: 1% 0;
-  justify-content: space-between;
   align-items: center;
 `;
 
@@ -15,14 +14,30 @@ export const NavLogo = styled(Link)`
   font-size: 1.5rem;
   color: black;
   font-family: "Anton", sans-serif;
-`;
-
-export const NavMenu = styled.ul`
-  list-style: none;
-  display: flex;
 
   @media screen and (max-width: 960px) {
-    display: flex;
+    width: 100%;
+  }
+`;
+
+export const NavContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  width: 80%;
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    width: 100%;
+  }
+`;
+
+export const NavMenu = styled.div`
+  list-style: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  @media screen and (max-width: 960px) {
     width: 100%;
     flex-direction: column;
     height: 90vh;
@@ -33,6 +48,7 @@ export const NavMenu = styled.ul`
     transition: all 0.5s ease;
     background-color: black;
     z-index: 1;
+    justify-content: start;
   }
 `;
 
@@ -131,16 +147,22 @@ export const DropContent = styled.div`
 `;
 export const Container = styled.div`
   display: flex;
-  width: 21%;
+  width: 20%;
   justify-content: space-between;
+  align-items: center;
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
 `;
-
+export const buttonSec = styled.div``;
 export const NavButton = styled(Link)`
-  padding: 5px 20px;
   background-color: white;
   border: 1px solid black;
   color: black;
   text-decoration: none;
+  padding: 5px 20px;
 
   &:hover {
     margin: 0;
@@ -151,12 +173,18 @@ export const NavButton = styled(Link)`
 export const UserAccount = styled(Link)`
   text-decoration: none;
   color: black;
-  border: 1px solid lightblue;
-  padding: 5px 10px;
+  border: 1px solid black;
+  padding: 5px 20px;
   height: 100%;
-  border-radius: 5px;
+
   &:hover {
     border-color: blue;
+  }
+
+  @media screen and (max-width: 960px) {
+    background-color: white;
+    border-radius: 0px;
+    margin-left: 10px;
   }
 `;
 export const UserMenu = styled.div`

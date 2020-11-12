@@ -56,11 +56,12 @@ export const TextArea = styled.textarea`
   display: block;
   border-radius: 5px;
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  border: 1px solid black;
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 4px lightblue;
+    box-shadow: 0px 0px 4px salmon;
   }
 `;
 

@@ -18,4 +18,13 @@ export const Label = styled.label``;
 export const Button = styled.button`
   margin: 1% 0;
   padding: 2px 2%;
+  background: none;
+  color: black;
+  border: 1px solid black;
+  padding: 0.3% 5%;
+  cursor: pointer;
+
+  &:hover {
+    border-color: salmon;
+  }
 `;

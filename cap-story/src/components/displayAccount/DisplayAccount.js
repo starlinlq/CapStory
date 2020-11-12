@@ -9,6 +9,10 @@ import {
   Delete,
   Edit,
   Img,
+  LinkComp,
+  Title,
+  Visited,
+  Comments,
 } from "./displayAccount.elemens";
 import Card from "../cardSection/Card";
 import { loadingUser } from "../../globalStore/auth/AuthActions";
@@ -18,32 +22,34 @@ function DisplayAccount() {
   let state = useSelector((data) => data.content);
   let user = useSelector((data) => data.user.id);
   let userData = state.filter((data) => data.userId === user);
-  console.log(userData);
+  const [center, setCenter] = useState(true);
+  let commentCount = useSelector((state) => state.comments);
+  console.log(commentCount);
 
   function deletePost(post) {
     let token = localStorage.getItem("auth-token");
     const data = { token, post };
     removeStory(data);
-    console.log(token);
   }
 
   return (
     <>
       <Header>
-        <HeadBody>My Stories</HeadBody>
-        <HeadBody>Liked Stories</HeadBody>
+        <HeadBody>MEMORIES</HeadBody>
       </Header>
       <Body>
         {userData.map((data) => (
-          <Options>
+          <Options key={data._id}>
             <Section>
               <Img url={data.imgUrl} />
             </Section>
-            <Section>{data.title}</Section>
-            <Section>Visited</Section>
-            <Section>Comments</Section>
             <Section>
-              <Edit to={`/create/${data._id}`}>Edit</Edit>
+              <Title>{data.title}</Title>
+            </Section>
+            <Section>
+              <LinkComp to={`/create/${data._id}`}>
+                <Edit>Edit</Edit>
+              </LinkComp>
               <Delete onClick={() => deletePost(data._id)}>Delete</Delete>
             </Section>
           </Options>

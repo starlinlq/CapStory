@@ -8,7 +8,7 @@ function Login({ match }) {
   const history = useHistory();
   const [data = { email: "", password: "" }, setData] = useState();
   const dispatch = useDispatch();
-  console.log(match);
+  const dataId = match.params.id;
 
   function getEmail(e) {
     setData({ ...data, email: e.target.value });
@@ -33,7 +33,7 @@ function Login({ match }) {
       <Input onChange={getEmail} value={data.email} />
       <Label>Password</Label>
       <Input onChange={getPassword} value={data.password} type="password" />
-      <Button>Log In</Button>
+      <Button>Sign In</Button>
     </Form>
   );
 }
