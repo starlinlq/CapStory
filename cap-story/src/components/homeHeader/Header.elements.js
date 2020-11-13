@@ -1,50 +1,81 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 export const Header = styled.div`
   display: flex;
-  height: 600px;
+  min-height: 600px;
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+  }
 `;
 
 export const HeadPhoto = styled.div`
-  background-image: url("https://cdn.mos.cms.futurecdn.net/gvQ9NhQP8wbbM32jXy4V3j.jpg");
+  background-image: url(${(props) => `${props.data.backgroundPic}`});
   width: 100%;
   background-size: cover;
-  background-repeat: no-repeat;
-  order: ${(props) => (props.objOne ? 1 : 2)};
+  min-height: 600px;
+  order: ${(props) => (props.data.order ? 2 : 1)};
 `;
 export const HeadBody = styled.div`
+  min-height: 600px;
   display: flex;
   height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.objOne ? "white" : "black")};
-  color: ${(props) => (props.objOne ? "black" : "white")};
-  order: ${(props) => (props.objOne ? 2 : 1)};
+  font-size: 1.1rem;
+  background-color: ${(props) => (props.data.order ? "black" : "white")};
+  color: ${(props) => (props.data.order ? "white" : "black")};
+  order: ${(props) => (props.data.order ? "1" : "2")};
   @media screen and (max-width: 960px) {
   }
 `;
 
 export const Title = styled.h1`
-  width: 70%;
+  width: 80%;
+
+  @media screen and (max-width: 960px) {
+    width: 90%;
+  }
 `;
 export const Story = styled.p`
   opacity: 0.9;
-
-  width: 70%;
+  margin: 4% 0;
+  width: 80%;
 
   @media screen and (max-width: 960px) {
     width: 90%;
   }
 `;
 export const Footer = styled.div`
-  display: flex;
-  width: 70%;
+  display: ${(props) => (props.data.noDisplay ? "none" : "flex")};
+  width: 80%;
   margin-top: 2%;
-  cursor: pointer;
+  justify-content: center;
+
   @media screen and (max-width: 960px) {
-    width: 30%;
+    width: 100%;
+  }
+
+  &:hover {
+    color: salmon;
   }
 `;
-export const Author = styled.p`
-  margin: 1% 0;
+export const FooterLinks = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
+export const Button = styled(Link)`
+  text-decoration: none;
+  color: white;
+  border: 1px solid lightgrey;
+  padding: 0.5% 6%;
+  margin-right: 1%;
+  cursor: pointer;
+
+  &:hover {
+    border-color: salmon;
+  }
 `;

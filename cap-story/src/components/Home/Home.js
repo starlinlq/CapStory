@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import HomeHeader from "../homeHeader/HomeHeader";
 import Card from "../cardSection/Card";
-import objOne from "./Data";
+import { objTwo, objOne } from "./Data";
 import { Trending, HeadTrending } from "./home.elements";
 import { HiOutlineTrendingUp } from "react-icons/hi";
 
@@ -14,11 +14,10 @@ function Home() {
 
   return (
     <>
-      <HomeHeader />
+      <HomeHeader data={objOne} />
       <Card state={story} />
-      <HomeHeader objOne={objOne} />
+      <HomeHeader data={objTwo} />
       <Card state={story2} />
-      <HomeHeader />
     </>
   );
 }

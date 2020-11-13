@@ -1,5 +1,5 @@
 import React from "react";
-import { CgArrowLongRight } from "react-icons/cg";
+import { useSelector } from "react-redux";
 import {
   Header,
   HeadBody,
@@ -7,25 +7,37 @@ import {
   Title,
   Story,
   Footer,
-  Author,
+  FooterLinks,
+  Button,
 } from "./Header.elements";
 
 function HomeHeader(props) {
+  const isUserAuthenticated = useSelector(
+    (state) => state.user.isAuthenticated
+  );
+
+  console.log(props.data);
   return (
     <Header>
-      <HeadBody objOne={props.objOne}>
+      <HeadBody data={props.data}>
         <Title>CREATE AND SHARE YOUR PHOTO STORIES</Title>
-        <Author></Author>
         <Story>
           {" "}
           CapStory is a platform for photographers and visual storytellers. We
           make it easy to share photos. tell stories and connect with others{" "}
         </Story>
-        <Footer>
-          Read More <CgArrowLongRight />
+        <Footer data={props.data}>
+          <FooterLinks>
+            {isUserAuthenticated === false && (
+              <>
+                <Button to="/register">Register</Button>
+                <Button to="login">Sign In</Button>
+              </>
+            )}
+          </FooterLinks>
         </Footer>
       </HeadBody>
-      <HeadPhoto objOne={props.objOne}></HeadPhoto>
+      <HeadPhoto data={props.data}></HeadPhoto>
     </Header>
   );
 }
