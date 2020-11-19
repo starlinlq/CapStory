@@ -22,6 +22,7 @@ import {
   Login,
   CommentBody,
   Delete,
+  Container,
 } from "./singleStory.elements";
 import {
   postComment,
@@ -67,7 +68,7 @@ function SingleStory({ match }) {
   };
 
   return (
-    <>
+    <Container>
       {state
         .filter((item) => item._id === id)
         .map((item) => (
@@ -130,7 +131,7 @@ function SingleStory({ match }) {
             </DisplayComment>
           ))}
       </Section>
-    </>
+    </Container>
   );
 }
 

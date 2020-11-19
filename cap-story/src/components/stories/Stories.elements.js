@@ -8,6 +8,9 @@ export const Filter = styled.div`
   border-bottom: 1px solid lightgrey;
 `;
 
+export const Container = styled.div`
+  margin: 0 15%;
+`;
 export const Button = styled.div`
   border: 1px solid lightgrey;
   border-radius: 50px;

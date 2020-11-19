@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Card from "../cardSection/Card";
 import Pagination from "./Pagination";
-import { Filter, Button } from "./Stories.elements";
+import { Filter, Button, Container } from "./Stories.elements";
 
 function Stories() {
   const [filterState, setFilterState] = useState([]);
@@ -52,7 +52,7 @@ function Stories() {
   }
 
   return (
-    <>
+    <Container>
       <Filter>
         <Button onClick={() => filterData("all")}>all</Button>
         <Button onClick={() => filterData("nature")}>nature</Button>
@@ -65,7 +65,7 @@ function Stories() {
         postPerPage={finalIndex}
         paginate={paginate}
       />
-    </>
+    </Container>
   );
 }
 

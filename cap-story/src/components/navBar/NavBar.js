@@ -22,6 +22,7 @@ import {
   NavContainer,
   DropButton,
   buttonSec,
+  MainContainer,
 } from "./NavBar.elements";
 
 import { BiMenu } from "react-icons/bi";
@@ -44,7 +45,7 @@ function NavBar() {
   }
 
   return (
-    <>
+    <MainContainer>
       <Nav>
         <NavLogo to="/">MEMORIES</NavLogo>
         <NavMenu icon={icon}>
@@ -109,7 +110,7 @@ function NavBar() {
           {icon ? <CgCloseR /> : <BiMenu />}
         </NavIcon>
       </Nav>
-    </>
+    </MainContainer>
   );
 }
 

@@ -94,5 +94,38 @@ export const Title = styled.h4`
   }
 `;
 
-export const Visited = styled.p``;
-export const Comments = styled.p``;
+export const ConfirmDelete = styled.div`
+  width: 450px;
+  padding: 2% 0;
+  background-color: white;
+  position: fixed;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  box-shadow: 1px -1px 11px -1px rgba(105, 102, 102, 0.75);
+  border-radius: 7px;
+  text-align: center;
+  display: ${({ display }) => (display ? "block" : "none")};
+`;
+export const Container = styled.div`
+  position: relative;
+`;
+
+export const P = styled.p`
+  font-size: 1.3rem;
+  margin-bottom: 2%;
+  font-weight: bold;
+`;
+export const Button = styled.button`
+  font-size: 1.1rem;
+  padding: 0.5% 6%;
+  margin: 0 1%;
+  background: none;
+  cursor: pointer;
+  border: 1px solid black;
+  &:hover {
+    border-color: salmon;
+  }
+`;

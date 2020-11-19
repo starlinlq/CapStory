@@ -17,7 +17,7 @@ html{
 
 body{
   min-height: 100vh;
-  margin: 0 15%;
+  
   font-family: 'Roboto', sans-serif;
 
   @media screen and (max-width:960px){

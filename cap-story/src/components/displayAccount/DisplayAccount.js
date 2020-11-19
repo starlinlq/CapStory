@@ -11,8 +11,10 @@ import {
   Img,
   LinkComp,
   Title,
-  Visited,
-  Comments,
+  P,
+  Button,
+  ConfirmDelete,
+  Container,
 } from "./displayAccount.elemens";
 import Card from "../cardSection/Card";
 import { loadingUser } from "../../globalStore/auth/AuthActions";
@@ -24,16 +26,29 @@ function DisplayAccount() {
   let userData = state.filter((data) => data.userId === user);
   const [center, setCenter] = useState(true);
   let commentCount = useSelector((state) => state.comments);
+  const [deleteMemory, setDeleteMemory] = useState(false);
+  const [idOfMemory, setIdOfMemory] = useState(null);
   console.log(commentCount);
 
-  function deletePost(post) {
+  function cancelDelete() {
+    setDeleteMemory(false);
+  }
+
+  function confirmDelete(id) {
+    setDeleteMemory(true);
+    setIdOfMemory(id);
+  }
+
+  function removeMemory() {
     let token = localStorage.getItem("auth-token");
-    const data = { token, post };
+    const data = { token, post: idOfMemory };
     removeStory(data);
+    setDeleteMemory(false);
+    setIdOfMemory(null);
   }
 
   return (
-    <>
+    <Container>
       <Header>
         <HeadBody>MEMORIES</HeadBody>
       </Header>
@@ -50,12 +65,17 @@ function DisplayAccount() {
               <LinkComp to={`/create/${data._id}`}>
                 <Edit>Edit</Edit>
               </LinkComp>
-              <Delete onClick={() => deletePost(data._id)}>Delete</Delete>
+              <Delete onClick={() => confirmDelete(data._id)}>Delete</Delete>
             </Section>
           </Options>
         ))}
       </Body>
-    </>
+      <ConfirmDelete display={deleteMemory}>
+        <P>Are you sure you want to delete this memory?</P>
+        <Button onClick={removeMemory}>Yes</Button>
+        <Button onClick={cancelDelete}>No</Button>
+      </ConfirmDelete>
+    </Container>
   );
 }
 

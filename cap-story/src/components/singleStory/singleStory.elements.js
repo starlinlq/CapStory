@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const Container = styled.div``;
 export const Header = styled.div`
   height: 600px;
   width: 100%;

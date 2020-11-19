@@ -12,12 +12,12 @@ import {
   CardFooter,
 } from "./Card.elements";
 
-function Card({ state }) {
+function Card({ state, size }) {
   return (
     <>
       <Section>
         {state.map((data) => (
-          <MainCard imgUrl={data.imgUrl} key={data._id}>
+          <MainCard imgUrl={data.imgUrl} key={data._id} size={size}>
             <CardBody>
               <Date>{data.date}</Date>
               <Title>{data.title}</Title>

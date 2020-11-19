@@ -3,22 +3,38 @@ import { Link } from "react-router-dom";
 
 export const Header = styled.div`
   display: flex;
-  min-height: 600px;
+  min-height: 700px;
 
   @media screen and (max-width: 960px) {
     flex-direction: column;
   }
 `;
 
-export const HeadPhoto = styled.div`
-  background-image: url(${(props) => `${props.data.backgroundPic}`});
-  width: 100%;
-  background-size: cover;
-  min-height: 600px;
+export const HeadVideo = styled.video`
+  width: 60%;
+  -o-object-fit: cover;
+  object-fit: cover;
   order: ${(props) => (props.data.order ? 2 : 1)};
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    height: 500px;
+  }
+`;
+
+export const HeadPhoto = styled.image`
+  background-image: url(${(props) => `${props.data.backgroundPic}`});
+  width: 60%;
+  background-size: cover;
+  order: ${(props) => (props.data.order ? 2 : 1)};
+
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    height: 500px;
+  }
 `;
 export const HeadBody = styled.div`
-  min-height: 600px;
+  width: 40%;
+  min-height: 700px;
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -29,6 +45,8 @@ export const HeadBody = styled.div`
   color: ${(props) => (props.data.order ? "white" : "black")};
   order: ${(props) => (props.data.order ? "1" : "2")};
   @media screen and (max-width: 960px) {
+    width: 100%;
+    height: 500px;
   }
 `;
 

@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Button } from "../../global/globalStyles";
 
+export const MainContainer = styled.div`
+  margin: 0 10%;
+`;
+
 export const Nav = styled.div`
   display: flex;
   margin: 0 5%;

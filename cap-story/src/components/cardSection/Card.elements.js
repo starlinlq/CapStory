@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export const Section = styled.div`
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
 
   @media screen and (max-width: 960px) {
     flex-direction: column;
@@ -12,20 +13,24 @@ export const Section = styled.div`
 export const MainCard = styled.div`
   background-image: url(${({ imgUrl }) => `${imgUrl}`});
   background-repeat: no-repeat;
-  height: 370px;
+  height: ${({ size }) => (size ? "550px" : "400px")};
   width: 25%;
-  transition: transform 0.3s;
+  transition: transform 0.1s;
+  filter: brightness(80%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   margin: 0 auto;
+
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
+    filter: brightness(100%);
   }
 
   @media screen and (max-width: 960px) {
-    width: 100%;
+    width: 95%;
     height: 550px;
+    filter: brightness(100%);
   }
 `;
 

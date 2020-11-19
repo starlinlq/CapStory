@@ -2,8 +2,18 @@ import React from "react";
 import { useSelector } from "react-redux";
 import HomeHeader from "../homeHeader/HomeHeader";
 import Card from "../cardSection/Card";
-import { objTwo, objOne } from "./Data";
-import { Trending, HeadTrending } from "./home.elements";
+import { objTwo, objOne, cardData } from "./Data";
+import { MdMonochromePhotos } from "react-icons/md";
+import {
+  Container,
+  Footer,
+  HeadPhoto,
+  FootBody,
+  FootTitle,
+  Button,
+  ButtContainer,
+  TitleWrap,
+} from "./home.elements";
 import { HiOutlineTrendingUp } from "react-icons/hi";
 
 function Home() {
@@ -15,9 +25,22 @@ function Home() {
   return (
     <>
       <HomeHeader data={objOne} />
-      <Card state={story} />
       <HomeHeader data={objTwo} />
-      <Card state={story2} />
+      <Container>
+        <Card state={story} size={cardData} />
+      </Container>
+      <Footer>
+        <FootBody>
+          <TitleWrap>
+            <MdMonochromePhotos></MdMonochromePhotos>
+            <FootTitle>Got A Memory?</FootTitle>
+          </TitleWrap>
+          <ButtContainer>
+            <Button to="/register">Register</Button>
+            <Button to="/login">Sign In</Button>
+          </ButtContainer>
+        </FootBody>
+      </Footer>
     </>
   );
 }

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import {
   Header,
   HeadBody,
+  HeadVideo,
   HeadPhoto,
   Title,
   Story,
@@ -11,22 +12,21 @@ import {
   Button,
 } from "./Header.elements";
 
-function HomeHeader(props) {
+function HomeHeader({ data }) {
   const isUserAuthenticated = useSelector(
     (state) => state.user.isAuthenticated
   );
 
-  console.log(props.data);
   return (
     <Header>
-      <HeadBody data={props.data}>
+      <HeadBody data={data}>
         <Title>CREATE AND SHARE YOUR PHOTO STORIES</Title>
         <Story>
           {" "}
           CapStory is a platform for photographers and visual storytellers. We
           make it easy to share photos. tell stories and connect with others{" "}
         </Story>
-        <Footer data={props.data}>
+        <Footer data={data}>
           <FooterLinks>
             {isUserAuthenticated === false && (
               <>
@@ -37,7 +37,19 @@ function HomeHeader(props) {
           </FooterLinks>
         </Footer>
       </HeadBody>
-      <HeadPhoto data={props.data}></HeadPhoto>
+      {data.changeHeader ? (
+        <HeadVideo
+          data={data}
+          src={data.video}
+          type="video/mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      ) : (
+        <HeadPhoto data={data} />
+      )}
     </Header>
   );
 }
