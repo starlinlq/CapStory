@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { handleUserUpdate } from "../../globalStore/actionCreator";
 import Progressbar from "../progressBar/ProgressBar";
 import axios from "axios";
+import { cardDataTwo } from "../Home/Data";
 import {
   PhotoSec,
   BioSec,
@@ -148,7 +149,7 @@ function DisplayUser({ match }) {
       ;
       <BodySection>
         <BodyHeader>MEMORIES</BodyHeader>
-        <Card state={state} />
+        <Card state={state} size={cardDataTwo} />
       </BodySection>
       <EditComment edit={edit} ref={wrapperRef}>
         <EditBody onSubmit={handleSubmit(saveChange)}>

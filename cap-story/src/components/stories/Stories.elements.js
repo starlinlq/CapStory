@@ -10,6 +10,10 @@ export const Filter = styled.div`
 
 export const Container = styled.div`
   margin: 0 15%;
+
+  @media screen and (max-width: 960px) {
+    margin: 0 2%;
+  }
 `;
 export const Button = styled.div`
   border: 1px solid lightgrey;

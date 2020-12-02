@@ -9,6 +9,10 @@ export const Header = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  @media screen and (max-width: 960px) {
+    height: 400px;
+  }
 `;
 
 export const Section = styled.div`
@@ -17,23 +21,33 @@ export const Section = styled.div`
 `;
 
 export const Body = styled.div`
-  min-height: 700px;
+  @media screen and (max-width: 960px) {
+  }
 `;
 
 export const Content = styled.p`
   font-size: 20px;
-  line-height: 2.5;
+  line-height: 2;
   margin: 0 15%;
+
+  @media screen and (max-width: 960px) {
+    margin: 0 5%;
+    text-align: justify;
+  }
 `;
 export const Title = styled.h1`
-  margin-top: 5%;
-  margin-bottom: 2%;
   text-align: center;
+  margin: 2% 0;
+
+  @media screen and (max-width: 960px) {
+    margin: 5% 0;
+  }
 `;
 
 export const CommentSection = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 2%;
 `;
 export const CreateComment = styled.div`
   width: 100%;
@@ -84,6 +98,10 @@ export const DisplayComment = styled.div`
   border: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   margin-bottom: 2%;
+
+  @media screen and (max-width: 960px) {
+    margin: 2% 5%;
+  }
 `;
 export const Form = styled.form``;
 export const CommentHead = styled.div`

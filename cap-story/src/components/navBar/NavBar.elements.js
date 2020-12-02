@@ -4,6 +4,10 @@ import { Button } from "../../global/globalStyles";
 
 export const MainContainer = styled.div`
   margin: 0 10%;
+
+  @media screen and (max-width: 960px) {
+    margin: 0 2%;
+  }
 `;
 
 export const Nav = styled.div`
@@ -20,7 +24,7 @@ export const NavLogo = styled(Link)`
   font-family: "Anton", sans-serif;
 
   @media screen and (max-width: 960px) {
-    width: 100%;
+    width: 30%;
   }
 `;
 
@@ -63,6 +67,8 @@ export const NavIcon = styled.div`
 
   @media screen and (max-width: 960px) {
     display: block;
+    position: relative;
+    margin-left: auto;
   }
 `;
 

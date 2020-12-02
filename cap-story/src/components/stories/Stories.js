@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Card from "../cardSection/Card";
 import Pagination from "./Pagination";
 import { Filter, Button, Container } from "./Stories.elements";
+import { cardDataTwo } from "../Home/Data";
 
 function Stories() {
   const [filterState, setFilterState] = useState([]);
@@ -59,7 +60,7 @@ function Stories() {
         <Button onClick={() => filterData("city")}>city</Button>
         <Button onClick={() => filterData("Sci-Fi")}>Sci-Fi</Button>
       </Filter>
-      <Card state={data} />
+      <Card state={data} size={cardDataTwo} />
       <Pagination
         totalPost={filterState.length}
         postPerPage={finalIndex}

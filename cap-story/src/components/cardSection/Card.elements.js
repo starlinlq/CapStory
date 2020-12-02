@@ -13,7 +13,7 @@ export const Section = styled.div`
 export const MainCard = styled.div`
   background-image: url(${({ imgUrl }) => `${imgUrl}`});
   background-repeat: no-repeat;
-  height: ${({ size }) => (size ? "550px" : "400px")};
+  height: ${({ size }) => (size.mainHeight ? "550px" : "450px")};
   width: 25%;
   transition: transform 0.1s;
   filter: brightness(80%);
@@ -29,7 +29,7 @@ export const MainCard = styled.div`
 
   @media screen and (max-width: 960px) {
     width: 95%;
-    height: 550px;
+    height: 500px;
     filter: brightness(100%);
   }
 `;
