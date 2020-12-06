@@ -18,6 +18,8 @@ import { HiOutlineTrendingUp } from "react-icons/hi";
 
 function Home() {
   const state = useSelector((data) => data.content);
+  const userAuth = useSelector((data) => data.user.isAuthenticated);
+  console.log(userAuth);
 
   const story = state.slice(0, 4);
   const story2 = state.slice(0, 4);
@@ -36,8 +38,14 @@ function Home() {
             <FootTitle>Got A Memory?</FootTitle>
           </TitleWrap>
           <ButtContainer>
-            <Button to="/register">Register</Button>
-            <Button to="/login">Sign In</Button>
+            {userAuth ? (
+              <Button to="/create">Create A Story</Button>
+            ) : (
+              <>
+                <Button to="/register">Register</Button>
+                <Button to="/login">Sign In</Button>{" "}
+              </>
+            )}
           </ButtContainer>
         </FootBody>
       </Footer>

@@ -6,18 +6,47 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 700px;
+  margin: auto;
+  border: 1px solid lightgrey;
+  border-radius: 7px;
+  padding: 1% 0;
+
+  @media screen and (max-width: 960px) {
+    width: 400px;
+  }
+`;
+
+export const FormWrapper = styled.div`
+  margin: 2% 0;
 `;
 export const Section = styled.div`
-  width: 450px;
+  width: 75%;
 `;
-export const FormButton = styled(Button, Link)`
-  margin-top: 5%;
+
+export const Menu = styled.ul`
+  width: 75%;
+`;
+export const FormButton = styled.button`
   width: 100%;
-  ${Button}
+  background: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1% 0;
+  margin-top: 5%;
+  border: 1px solid white;
+
+  &:hover {
+    background: none;
+    color: black;
+    border-color: black;
+  }
 `;
 
 export const TextArea = styled.textarea`
   width: 100%;
+  margin-top: 5%;
 `;
 export const Input = styled.input`
   width: 100%;
@@ -28,9 +57,10 @@ export const Label = styled.label`
   display: block;
   font-size: 20px;
   font-family: "Roboto", sans-serif;
+  font-weight: bold;
 `;
 
-export const TopicButton = styled.div`
+export const TopicButton = styled.li`
   display: inline-block;
   margin: 4% 1%;
   padding: 5px 10px;
@@ -40,6 +70,86 @@ export const TopicButton = styled.div`
   border-color: lightgray;
 
   &:hover {
-    background-color: lightgray;
+    border-color: black;
+  }
+`;
+
+export const Nature = styled.li`
+  display: inline-block;
+  margin: 4% 1%;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: ${({ active }) => (active.nature ? "lightblue" : "white")};
+  border: 1px solid lightgray;
+  border-color: lightgray;
+
+  &:hover {
+    border-color: black;
+  }
+`;
+export const Universe = styled.li`
+  display: inline-block;
+  margin: 4% 1%;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: ${({ active }) =>
+    active.universe ? "lightblue" : "white"};
+  border: 1px solid lightgray;
+  border-color: lightgray;
+
+  &:hover {
+    border-color: black;
+  }
+`;
+export const Life = styled.li`
+  display: inline-block;
+  margin: 4% 1%;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: ${({ active }) => (active.life ? "lightblue" : "white")};
+  border: 1px solid lightgray;
+  border-color: lightgray;
+
+  &:hover {
+    border-color: black;
+  }
+`;
+export const Other = styled.li`
+  display: inline-block;
+  margin: 4% 1%;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: ${({ active }) => (active.other ? "lightblue" : "white")};
+  border: 1px solid lightgray;
+  border-color: lightgray;
+
+  &:hover {
+    border-color: black;
+  }
+`;
+export const SciFi = styled.li`
+  display: inline-block;
+  margin: 4% 1%;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: ${({ active }) => (active.sciFi ? "lightblue" : "white")};
+  border: 1px solid lightgray;
+  border-color: lightgray;
+
+  &:hover {
+    border-color: black;
+  }
+`;
+export const City = styled.li`
+  display: inline-block;
+  margin: 4% 1%;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: ${({ active }) => (active.city ? "lightblue" : "white")};
+  border: 1px solid lightgray;
+  border-color: lightgray;
+
+  &:hover {
+    border-color: black;
   }
 `;

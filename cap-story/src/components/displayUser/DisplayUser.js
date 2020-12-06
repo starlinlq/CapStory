@@ -92,11 +92,6 @@ function DisplayUser({ match }) {
     setEdit(false);
   }
 
-  function handleCancel() {
-    setEdit(false);
-  }
-  console.log(displayData);
-
   function useOutsideAlerter(ref) {
     useEffect(() => {
       /**
@@ -148,7 +143,9 @@ function DisplayUser({ match }) {
       ))}
       ;
       <BodySection>
-        <BodyHeader>MEMORIES</BodyHeader>
+        {displayData.map((name) => (
+          <BodyHeader>{name.displayName + " Memories"}</BodyHeader>
+        ))}
         <Card state={state} size={cardDataTwo} />
       </BodySection>
       <EditComment edit={edit} ref={wrapperRef}>
@@ -169,7 +166,6 @@ function DisplayUser({ match }) {
           <Input placeholder="Interest" name="interest" ref={register} />
           <SaveButton>Save Changes</SaveButton>
         </EditBody>
-        <CancelButton onClick={handleCancel}>Cancel</CancelButton>
       </EditComment>
     </MainSec>
   );

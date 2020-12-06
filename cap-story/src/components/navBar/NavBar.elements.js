@@ -166,7 +166,7 @@ export const Container = styled.div`
     margin-top: 10px;
   }
 `;
-export const buttonSec = styled.div``;
+export const ButtonSec = styled.div``;
 export const NavButton = styled(Link)`
   background-color: white;
   border: 1px solid black;
@@ -198,13 +198,13 @@ export const UserAccount = styled(Link)`
   }
 `;
 export const UserMenu = styled.div`
-  display: none;
+  display: ${({ active }) => (active ? "block" : "none")};
   position: absolute;
-  top: 32px;
-  width: 150px;
-
+  top: 40px;
+  width: 110px;
   border: 1px solid lightgrey;
   background-color: white;
+  z-index: 999;
 `;
 
 export const UserSection = styled.div`
@@ -212,11 +212,11 @@ export const UserSection = styled.div`
   align-items: center;
   position: relative;
 
-  &:hover {
+  /* &:hover {
     ${UserMenu} {
       display: block;
     }
-  }
+  } */
 `;
 export const UserButton = styled.button`
   padding: 5px 20px;
@@ -239,6 +239,7 @@ export const DropButton = styled(Link)`
   width: 100%;
   padding: 10px 0;
   background-color: white;
+  border: 1px solid white;
 
   color: black;
   text-decoration: none;
@@ -247,6 +248,6 @@ export const DropButton = styled(Link)`
   &:hover {
     margin: 0;
     border-color: lightsalmon;
-    border: 1px solid lightgrey;
+    border-color: black;
   }
 `;

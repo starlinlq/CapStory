@@ -34,8 +34,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Content>
-        <Router>
+      <Router>
+        <Content>
           <ScrollToTop />
           <NavBar />
           <Switch>
@@ -50,9 +50,9 @@ function App() {
             <Route exact path="/myaccount" component={DisplayAccount} />
             <Route exact path="/user/:id" component={DisplayUser} />
           </Switch>
-        </Router>
-      </Content>
-      <Footer />
+        </Content>
+        <Footer />
+      </Router>
     </>
   );
 }

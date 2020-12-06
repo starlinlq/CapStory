@@ -9,16 +9,29 @@ export const Header = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  margin: 0 5%;
+  margin: 0 10%;
   margin-top: 5%;
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    margin: 0 2%;
+  }
 `;
 export const PhotoSec = styled.div`
   text-align: center;
   width: 40%;
+
+  @media screen and (max-width: 960px) {
+    width: 100%;
+  }
 `;
 export const BioSec = styled.div`
   width: 50%;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 960px) {
+    width: 95%;
+  }
 `;
 export const Img = styled.img`
   background-image: url(${({ url }) => `${url}`});
@@ -44,12 +57,17 @@ export const UserName = styled.h2`
 `;
 
 export const BodySection = styled.div`
-  margin-top: 7%;
   min-height: 900px;
+  margin: 0 10%;
+  margin-top: 5%;
+
+  @media screen and (max-width: 960px) {
+    margin: 0 2%;
+  }
 `;
 export const BodyHeader = styled.div`
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin: 10px 0;
   padding: 5px 0;
 `;
@@ -80,11 +98,25 @@ export const EditComment = styled.div`
   box-shadow: 1px -1px 11px -1px rgba(105, 102, 102, 0.75);
   border-radius: 7px;
   padding: 2% 0;
+
+  @media screen and (max-width: 960px) {
+    margin: 0 5%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
 `;
 
 export const EditBody = styled.form`
   width: 80%;
   margin: auto;
+
+  @media screen and (max-width: 960px) {
+    width: 90%;
+  }
 `;
 
 export const Input = styled.input`
@@ -121,7 +153,7 @@ export const CancelButton = styled.button`
   background: none;
   position: relative;
   bottom: 42.2px;
-  left: 179px;
+  left: 210px;
   border: 1px solid black;
   padding: 5px 10px;
   cursor: pointer;

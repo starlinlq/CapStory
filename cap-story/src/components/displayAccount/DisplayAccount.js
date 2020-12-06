@@ -15,6 +15,7 @@ import {
   Button,
   ConfirmDelete,
   Container,
+  ImgWrapper,
 } from "./displayAccount.elemens";
 import Card from "../cardSection/Card";
 import { loadingUser } from "../../globalStore/auth/AuthActions";
@@ -50,14 +51,14 @@ function DisplayAccount() {
   return (
     <Container>
       <Header>
-        <HeadBody>MEMORIES</HeadBody>
+        <HeadBody>Memories</HeadBody>
       </Header>
       <Body>
         {userData.map((data) => (
           <Options key={data._id}>
-            <Section>
+            <ImgWrapper to={`/data/${data._id}`}>
               <Img url={data.imgUrl} />
-            </Section>
+            </ImgWrapper>
             <Section>
               <Title>{data.title}</Title>
             </Section>

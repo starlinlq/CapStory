@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -21,13 +21,16 @@ import {
   UserMenu,
   NavContainer,
   DropButton,
-  buttonSec,
+  ButtonSec,
   MainContainer,
 } from "./NavBar.elements";
 
 import { BiMenu } from "react-icons/bi";
 import { CgCloseR } from "react-icons/cg";
 function NavBar() {
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
+  const [active, setActive] = useState(false);
   const data = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -39,9 +42,36 @@ function NavBar() {
     setIcon(!icon);
   }
 
+  function handleActive() {
+    if (window.innerWidth < 960) {
+      setIcon(!icon);
+    }
+    setActive(!active);
+  }
+
   function logOut() {
     dispatch({ type: "LOGOUT_SUCCESS" });
+    setActive(!active);
     history.push("/");
+  }
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setActive(false);
+        }
+      }
+
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
   }
 
   return (
@@ -51,12 +81,14 @@ function NavBar() {
         <NavMenu icon={icon}>
           <NavContainer>
             <NavItem>
-              <NavLinks to="/">HOME</NavLinks>
+              <NavLinks onClick={handleIcon} to="/">
+                Home
+              </NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks to="/stories">
-                STORIES
-                <DropMenu>
+              <NavLinks onClick={handleIcon} to="/stories">
+                Stories
+                {/* <DropMenu>
                   <Section>
                     <DropBody>
                       <DropHeader></DropHeader>
@@ -71,37 +103,46 @@ function NavBar() {
                       <DropContent>Emotions</DropContent>
                     </DropBody>
                   </Section>
-                </DropMenu>
+                </DropMenu> */}
               </NavLinks>
             </NavItem>
-            <NavItem>
-              <NavLinks to="/">FEATURES</NavLinks>
-            </NavItem>
+            <NavItem></NavItem>
           </NavContainer>
 
           <Container>
             {data ? (
               <>
-                <buttonSec>
-                  <NavButton to="/create">Create</NavButton>
-                </buttonSec>
-                <buttonSec>
-                  <UserSection>
-                    <UserAccount to="/myaccount"> Account</UserAccount>
-                    <UserMenu>
-                      <DropButton to="/myAccount">Memories</DropButton>
-                      <DropButton to={`/user/${currentUserId}`}>
+                <ButtonSec>
+                  <NavButton onClick={handleIcon} to="/create">
+                    Create Story
+                  </NavButton>
+                </ButtonSec>
+                <ButtonSec>
+                  <UserSection ref={wrapperRef}>
+                    <UserAccount onClick={handleActive}>Account</UserAccount>
+                    <UserMenu active={active}>
+                      <DropButton onClick={handleActive} to="/myAccount">
+                        Memories
+                      </DropButton>
+                      <DropButton
+                        onClick={handleActive}
+                        to={`/user/${currentUserId}`}
+                      >
                         Profile
                       </DropButton>
                       <DropButton onClick={logOut}>Sign Out</DropButton>
                     </UserMenu>
                   </UserSection>
-                </buttonSec>
+                </ButtonSec>
               </>
             ) : (
               <>
-                <NavButton to="/register">Register</NavButton>
-                <NavButton to="/login">Sign In</NavButton>{" "}
+                <NavButton onClick={handleIcon} to="/register">
+                  Register
+                </NavButton>
+                <NavButton onClick={handleIcon} to="/login">
+                  Sign In
+                </NavButton>{" "}
               </>
             )}
           </Container>

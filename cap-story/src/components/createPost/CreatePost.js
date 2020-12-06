@@ -9,11 +9,30 @@ import {
   FormButton,
   TextArea,
   TopicButton,
+  Menu,
+  Nature,
+  City,
+  SciFi,
+  Life,
+  Universe,
+  Other,
+  FormWrapper,
 } from "./CreatePost.elements";
 
 import Progressbar from "../progressBar/ProgressBar";
 
 function CreatePost({ match }) {
+  const [
+    active = {
+      nature: false,
+      city: false,
+      sciFi: false,
+      life: false,
+      universe: false,
+      other: false,
+    },
+    setActive,
+  ] = useState();
   const token = useSelector((state) => state.user.token);
   const [update, setUpdate] = useState(false);
   const [file, setFile] = useState(null);
@@ -64,6 +83,82 @@ function CreatePost({ match }) {
   }
 
   function setTopic(selectedTopic) {
+    switch (selectedTopic) {
+      case "nature": {
+        setActive({
+          ...active,
+          nature: true,
+          city: false,
+          sciFi: false,
+          life: false,
+          universe: false,
+          other: false,
+        });
+        break;
+      }
+      case "city": {
+        setActive({
+          ...active,
+          nature: false,
+          city: true,
+          sciFi: false,
+          life: false,
+          universe: false,
+          other: false,
+        });
+        break;
+      }
+      case "sci-fi": {
+        setActive({
+          ...active,
+          nature: false,
+          city: false,
+          sciFi: true,
+          life: false,
+          universe: false,
+          other: false,
+        });
+        break;
+      }
+      case "universe": {
+        setActive({
+          ...active,
+          universe: true,
+          city: false,
+          sciFi: false,
+          life: false,
+          other: false,
+          nature: false,
+        });
+        break;
+      }
+      case "other": {
+        setActive({
+          ...active,
+          universe: false,
+          city: false,
+          sciFi: false,
+          life: false,
+          other: true,
+          nature: false,
+        });
+        break;
+      }
+      case "life": {
+        setActive({
+          ...active,
+          nature: false,
+          universe: false,
+          city: false,
+          sciFi: false,
+          life: true,
+          other: false,
+        });
+        break;
+      }
+      default:
+        break;
+    }
     setData({ ...data, topic: selectedTopic });
   }
 
@@ -115,48 +210,64 @@ function CreatePost({ match }) {
     e.preventDefault();
   }
   return (
-    <Form onSubmit={handleForm}>
-      <Section>
-        <Label>author</Label>
-        <Input value={data.author} onChange={handleAuthor} />
-      </Section>
-      <Section>
-        <Label>Image</Label>
-        <Input type="file" onChange={handleImgUrl} />
+    <FormWrapper>
+      <Form onSubmit={handleForm}>
+        <Section>
+          <Label>author</Label>
+          <Input value={data.author} onChange={handleAuthor} />
+        </Section>
+        <Section>
+          <Label>Image</Label>
+          <Input type="file" onChange={handleImgUrl} />
 
-        {file && <Progressbar file={file} setFile={setFile} />}
-        {error && <Label>Please select an image file (png, jpeg or jpg)</Label>}
-      </Section>
-      <Section>
-        <Label>title</Label>
-        <Input value={data.title} onChange={handleTitle} />
-      </Section>
-      <Section>
-        <Label>Topic</Label>
-        <TopicButton onClick={() => setTopic("nature")}>Nature</TopicButton>
-        <TopicButton onClick={() => setTopic("city")}>City</TopicButton>
-        <TopicButton onClick={() => setTopic("sci-fi")}>Sci-Fi</TopicButton>
-        <TopicButton onClick={() => setTopic("life")}>Life</TopicButton>
-        <TopicButton onClick={() => setTopic("universe")}>Universe</TopicButton>
-        <TopicButton onClick={() => setTopic("other")}>Other</TopicButton>
-      </Section>
-      <Section>
-        <Label>Story</Label>
-        <TextArea
-          value={data.story}
-          onChange={handleStory}
-          rows="10"
-          cols="50"
-        />
-      </Section>
-      <Section>
-        {update ? (
-          <FormButton to="/">Update</FormButton>
-        ) : (
-          <FormButton to="/">Submit</FormButton>
-        )}
-      </Section>
-    </Form>
+          {file && <Progressbar file={file} setFile={setFile} />}
+          {error && (
+            <Label>Please select an image file (png, jpeg or jpg)</Label>
+          )}
+        </Section>
+        <Section>
+          <Label>title</Label>
+          <Input value={data.title} onChange={handleTitle} />
+        </Section>
+        <Menu>
+          <Label>Topic</Label>
+          <Nature active={active} onClick={() => setTopic("nature")}>
+            Nature
+          </Nature>
+          <City active={active} onClick={() => setTopic("city")}>
+            City
+          </City>
+          <SciFi active={active} onClick={() => setTopic("sci-fi")}>
+            Sci-Fi
+          </SciFi>
+          <Life active={active} onClick={() => setTopic("life")}>
+            Life
+          </Life>
+          <Universe active={active} onClick={() => setTopic("universe")}>
+            Universe
+          </Universe>
+          <Other active={active} onClick={() => setTopic("other")}>
+            Other
+          </Other>
+        </Menu>
+        <Section>
+          <Label>Story</Label>
+          <TextArea
+            value={data.story}
+            onChange={handleStory}
+            rows="10"
+            cols="50"
+          />
+        </Section>
+        <Section>
+          {update ? (
+            <FormButton>Update</FormButton>
+          ) : (
+            <FormButton>Submit</FormButton>
+          )}
+        </Section>
+      </Form>
+    </FormWrapper>
   );
 }
 

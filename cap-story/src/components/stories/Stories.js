@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import Card from "../cardSection/Card";
 import Pagination from "./Pagination";
@@ -11,13 +11,9 @@ function Stories() {
   const [currentPage, setCurrentPage] = useState(1);
   const state = useSelector((data) => data.content);
 
-  function setData() {
-    setFilterState(state);
-  }
-
   useEffect(() => {
-    setData();
-  }, []);
+    setFilterState(state);
+  }, [state]);
 
   const indexOfLasPost = currentPage * finalIndex;
   const indexOfFirstPosts = indexOfLasPost - finalIndex;

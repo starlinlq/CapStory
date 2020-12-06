@@ -1,14 +1,28 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const Date = styled.p`
+  margin: 0;
+  font-size: 16px;
+  margin: 3% 0;
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+`;
+
 export const Section = styled.div`
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-
   @media screen and (max-width: 960px) {
     flex-direction: column;
+    align-items: center;
   }
+`;
+
+export const DateWrapper = styled.div`
+  display: none;
 `;
 export const MainCard = styled.div`
   background-image: url(${({ imgUrl }) => `${imgUrl}`});
@@ -20,7 +34,11 @@ export const MainCard = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin: 0 auto;
+
+  &:hover ${Date} {
+    opacity: 1;
+    height: auto;
+  }
 
   &:hover {
     transform: scale(1.01);
@@ -39,7 +57,7 @@ export const CardBody = styled.div`
   height: 100%;
   width: 90%;
   margin: 0;
-  margin-left: 10%;
+  margin-left: 5%;
   flex-direction: column;
   justify-content: flex-end;
   color: white;
@@ -47,18 +65,13 @@ export const CardBody = styled.div`
   text-decoration: none;
 `;
 
-export const Date = styled.p`
-  margin: 0;
-  font-size: 10px;
-`;
 export const Title = styled.h2`
   margin: 0;
   padding: 2% 0;
 `;
 export const Author = styled.p`
   margin: 0;
-  font-size: 11px;
-  margin-bottom: 7%;
+  font-size: 14px;
 `;
 export const CardFooter = styled(Link)`
   text-decoration: none;

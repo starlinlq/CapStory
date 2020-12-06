@@ -7,6 +7,20 @@ export const Section = styled.div`
   color: black;
   margin: 10px 0;
 `;
+
+export const ImgWrapper = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  margin: 10px 0;
+  border: 2px solid white;
+  border-radius: 7px;
+
+  &:hover {
+    border-color: black;
+  }
+`;
 export const Header = styled.div`
   margin-top: 10%;
   display: flex;
@@ -99,7 +113,6 @@ export const ConfirmDelete = styled.div`
   padding: 2% 0;
   background-color: white;
   position: fixed;
-  position: fixed;
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
@@ -111,6 +124,7 @@ export const ConfirmDelete = styled.div`
 `;
 export const Container = styled.div`
   position: relative;
+  margin: 0 15%;
 `;
 
 export const P = styled.p`

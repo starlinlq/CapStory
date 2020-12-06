@@ -10,27 +10,26 @@ import {
   Title,
   Author,
   CardFooter,
+  DateWrapper,
 } from "./Card.elements";
 
 function Card({ state, size }) {
   return (
-    <>
-      <Section>
-        {state.map((data) => (
-          <MainCard imgUrl={data.imgUrl} key={data._id} size={size}>
-            <CardBody>
-              <Date>{data.date}</Date>
-              <Title>{data.title}</Title>
-              <Author>by {data.author}</Author>
-              <CardFooter to={`/data/${data._id}`}>
-                <p>Read Story</p>
-                <BsArrowRight />
-              </CardFooter>
-            </CardBody>
-          </MainCard>
-        ))}
-      </Section>
-    </>
+    <Section>
+      {state.map((data) => (
+        <MainCard imgUrl={data.imgUrl} key={data._id} size={size}>
+          <CardBody>
+            <Title>{data.title}</Title>
+            <Author>by {data.author}</Author>
+            <Date>{data.story.slice(0, 200) + "..."}</Date>
+            <CardFooter to={`/data/${data._id}`}>
+              <p>Read Story</p>
+              <BsArrowRight />
+            </CardFooter>
+          </CardBody>
+        </MainCard>
+      ))}
+    </Section>
   );
 }
 
