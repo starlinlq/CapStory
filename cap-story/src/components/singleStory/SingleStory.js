@@ -32,7 +32,7 @@ import {
 function SingleStory({ match }) {
   const [newComment, setNewComment] = useState(false);
   const state = useSelector((state) => state.content);
-  const userName = useSelector((state) => state.user.user);
+  const userName = useSelector((state) => state.user.name);
   const userId = useSelector((state) => state.user.id);
   const id = match.params.id;
   const { register, handleSubmit, errors } = useForm();
@@ -42,11 +42,12 @@ function SingleStory({ match }) {
   const commentData = useSelector((state) => state.comments);
   const userAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const token = localStorage.getItem("auth-token");
+  console.log(userName);
 
-  /*   useEffect(() => {
+  useEffect(() => {
     dispatch(getComments());
   }, []);
- */
+
   /*  useEffect(() => {}, [commentData]); */
 
   function handleComment({ comment }) {

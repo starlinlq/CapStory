@@ -10,6 +10,7 @@ const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 const initialState = {
   token: localStorage.getItem("auth-token"),
   isAuthenticated: null,
+  loginFail: null,
   isLoading: false,
   name: null,
   id: null,
@@ -49,7 +50,20 @@ function authReducer(state = initialState, action) {
         id: action.payload.user.id,
       };
     case AUTH_ERROR:
-    case LOGIN_FAIL:
+    case LOGIN_FAIL: {
+      return {
+        token: localStorage.getItem("auth-token"),
+        isAuthenticated: null,
+        loginFail: true,
+        isLoading: false,
+        name: null,
+        id: null,
+        bio: null,
+        interest: null,
+        location: null,
+        photoUrl: null,
+      };
+    }
     case LOGOUT_SUCCESS:
     case REGISTER_FAIL:
       localStorage.removeItem("auth-token");

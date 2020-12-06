@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Label, Button } from "./login.elements";
+import {
+  Form,
+  Input,
+  Label,
+  Button,
+  Invalid,
+  Container,
+  FormWrapper,
+  BackgroundWrapper,
+  Background,
+  Wrapper,
+  InputWrapper,
+} from "./login.elements";
 import { logInUser } from "../../globalStore/auth/AuthActions";
 import { useHistory } from "react-router-dom";
 
@@ -8,7 +20,14 @@ function Login({ match }) {
   const history = useHistory();
   const [data = { email: "", password: "" }, setData] = useState();
   const dispatch = useDispatch();
+  const loginFail = useSelector((data) => data.user.loginFail);
+  const userAuthenticated = useSelector((data) => data.user.isAuthenticated);
   const dataId = match.params.id;
+  const [
+    emptyData = { email: false, password: false },
+    setEmptyData,
+  ] = useState();
+  console.log(userAuthenticated);
 
   function getEmail(e) {
     setData({ ...data, email: e.target.value });
@@ -19,7 +38,23 @@ function Login({ match }) {
   }
 
   function sendData(e) {
-    dispatch(logInUser(data));
+    e.preventDefault();
+    if (data.email === "" && data.password === "") {
+      setEmptyData({ ...emptyData, email: true, password: true });
+      return;
+    } else if (data.email === "") {
+      setEmptyData({ ...emptyData, email: true });
+      return;
+    } else if (data.password === "") {
+      setEmptyData({ ...emptyData, password: true });
+      return;
+    } else {
+      setEmptyData({ ...emptyData, email: false, password: false });
+      dispatch(logInUser(data));
+    }
+    return;
+  }
+  if (userAuthenticated) {
     if (match.params.id) {
       history.push(`/data/${match.params.id}`);
     } else {
@@ -28,13 +63,34 @@ function Login({ match }) {
   }
 
   return (
-    <Form onSubmit={sendData}>
-      <Label>Email</Label>
-      <Input onChange={getEmail} value={data.email} />
-      <Label>Password</Label>
-      <Input onChange={getPassword} value={data.password} type="password" />
-      <Button>Sign In</Button>
-    </Form>
+    <Container>
+      <Wrapper>
+        <BackgroundWrapper>
+          <Background />
+        </BackgroundWrapper>
+        <FormWrapper>
+          <Form onSubmit={sendData}>
+            <Label>Email</Label>
+            <Input onChange={getEmail} value={data.email} />
+            {emptyData.email ? <Invalid>please enter an email</Invalid> : null}
+
+            <Label>Password</Label>
+            <Input
+              onChange={getPassword}
+              value={data.password}
+              type="password"
+            />
+            {emptyData.password ? (
+              <Invalid>please enter a password</Invalid>
+            ) : null}
+            {loginFail ? (
+              <Invalid>Incorrent user data, please try again</Invalid>
+            ) : null}
+            <Button>Sign In</Button>
+          </Form>
+        </FormWrapper>
+      </Wrapper>
+    </Container>
   );
 }
 

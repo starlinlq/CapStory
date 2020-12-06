@@ -23,11 +23,11 @@ export const registerUser = (data) => {
             dispatch(setUser(res.data));
           })
           .catch((err) => {
-            console.log(err);
+            dispatch({ type: "LOGIN_FAIL" });
           });
       })
       .catch((err) => {
-        dispatch({ type: "REGISTER_FAIL" });
+        dispatch({ type: "LOGIN_FAIL" });
       });
   };
 };

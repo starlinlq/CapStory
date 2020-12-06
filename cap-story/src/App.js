@@ -24,7 +24,6 @@ function App() {
   useEffect(() => {
     dispatch(loadData());
     dispatch(loadingUser());
-    dispatch(getComments());
   }, []);
 
   const Content = styled.div`
