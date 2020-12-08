@@ -42,11 +42,18 @@ function NavBar() {
     setIcon(!icon);
   }
 
-  function handleActive() {
+  function handleAccount() {
+    setActive(!active);
+
+    return;
+  }
+
+  function handleActive(acc) {
     if (window.innerWidth < 960) {
       setIcon(!icon);
     }
     setActive(!active);
+    return;
   }
 
   function logOut() {
@@ -119,7 +126,7 @@ function NavBar() {
                 </ButtonSec>
                 <ButtonSec>
                   <UserSection ref={wrapperRef}>
-                    <UserAccount onClick={handleActive}>Account</UserAccount>
+                    <UserAccount onClick={handleAccount}>Account</UserAccount>
                     <UserMenu active={active}>
                       <DropButton onClick={handleActive} to="/myAccount">
                         Memories

@@ -10,6 +10,9 @@ import {
   FormWrapper,
   Container,
   Passwordlenght,
+  Img,
+  ImgWrapper,
+  FormContainer,
 } from "./register.elements";
 import { registerUser } from "../../globalStore/auth/AuthActions";
 
@@ -105,44 +108,53 @@ const Register = () => {
 
   return (
     <Container>
-      <FormWrapper>
-        <Form onSubmit={sendData}>
-          <Label>Display Name</Label>
-          <Input onChange={setUserName} value={user.displayName} />
-          {inputValid.displayName ? (
-            <Invalid>Please enter a name</Invalid>
-          ) : null}
-          <Label>Email</Label>
-          <Input onChange={setEmail} value={user.email} />
-          {inputValid.email ? <Invalid>PLease enter email</Invalid> : null}
-          <Label>Password</Label>
-          <Input onChange={setPassword} value={user.password} type="password" />
-          {inputValid.password ? null : (
-            <Passwordlenght>
-              password needs to be longer than 6 characters
-            </Passwordlenght>
-          )}
-          {inputValid.password ? (
-            <Invalid>please enter password</Invalid>
-          ) : null}
-          <Label>Password Check</Label>
-          <Input
-            onChange={setPasswordCheck}
-            value={user.passwordCheck}
-            type="password"
-          />
-          {inputValid.passwordCheck ? (
-            <Invalid>please verify password</Invalid>
-          ) : null}
-          {isAuthenticated ? (
-            <Invalid>
-              there is something wrong with the information provided, please
-              verify it
-            </Invalid>
-          ) : null}
-          <Button>Register</Button>
-        </Form>
-      </FormWrapper>
+      <FormContainer>
+        <ImgWrapper>
+          <Img />
+        </ImgWrapper>
+        <FormWrapper>
+          <Form onSubmit={sendData}>
+            <Label>Display Name</Label>
+            <Input onChange={setUserName} value={user.displayName} />
+            {inputValid.displayName ? (
+              <Invalid>Please enter a name</Invalid>
+            ) : null}
+            <Label>Email</Label>
+            <Input onChange={setEmail} value={user.email} />
+            {inputValid.email ? <Invalid>PLease enter email</Invalid> : null}
+            <Label>Password</Label>
+            <Input
+              onChange={setPassword}
+              value={user.password}
+              type="password"
+            />
+            {inputValid.password ? null : (
+              <Passwordlenght>
+                password needs to be longer than 6 characters
+              </Passwordlenght>
+            )}
+            {inputValid.password ? (
+              <Invalid>please enter password</Invalid>
+            ) : null}
+            <Label>Password Check</Label>
+            <Input
+              onChange={setPasswordCheck}
+              value={user.passwordCheck}
+              type="password"
+            />
+            {inputValid.passwordCheck ? (
+              <Invalid>please verify password</Invalid>
+            ) : null}
+            {isAuthenticated ? (
+              <Invalid>
+                there is something wrong with the information provided, please
+                verify it
+              </Invalid>
+            ) : null}
+            <Button>Register</Button>
+          </Form>
+        </FormWrapper>
+      </FormContainer>
     </Container>
   );
 };
