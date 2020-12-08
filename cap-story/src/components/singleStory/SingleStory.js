@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Profile from "../storyProfile/Profile";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { BsTrash } from "react-icons/bs";
@@ -42,7 +43,6 @@ function SingleStory({ match }) {
   const commentData = useSelector((state) => state.comments);
   const userAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const token = localStorage.getItem("auth-token");
-  console.log(userName);
 
   useEffect(() => {
     dispatch(getComments());
@@ -68,6 +68,8 @@ function SingleStory({ match }) {
     dispatch(removeComment(post_id, token));
   };
 
+  console.log(state);
+
   return (
     <Container>
       {state
@@ -77,6 +79,7 @@ function SingleStory({ match }) {
             <Header imgUrl={item.imgUrl}></Header>
             <Body>
               <Title>{item.title}</Title>
+              <Profile userId={item.userId} />
               <Content>{item.story}</Content>
             </Body>
           </Section>

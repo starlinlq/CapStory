@@ -4,19 +4,20 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   margin: 0 7%;
-  margin-top: 5%;
+  width: 100%;
 `;
 
 export const FormWrapper = styled.div`
+  display: flex;
+  align-items: center;
   width: 100%;
   position: relative;
   bottom: 23px;
   border: solid 1px black;
   border-radius: 20px;
-  z-index: 999;
-  background: white;
 
-  height: 350px;
+  background: white;
+  height: 380px;
 `;
 export const Container = styled.div`
   display: flex;
@@ -24,11 +25,12 @@ export const Container = styled.div`
 
   @media screen and (max-width: 960px) {
     height: 100vh;
+    margin: 0 2%;
   }
 `;
 export const Input = styled.input`
   width: 100%;
-  padding: 10px 0;
+  padding: 5px 0;
   margin: 1% 0;
 `;
 export const Passwordlenght = styled.p`
@@ -42,17 +44,17 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
-  margin: 1% 0;
-  padding: 1.5% 15%;
-  background-color: black;
-  color: white;
-  border: 1px solid white;
+  margin-top: 1%;
+  padding: 1% 0;
+  background: none;
+  color: black;
+  border: 1px solid black;
+
   cursor: pointer;
+  width: 100%;
 
   &:hover {
-    background-color: white;
-    border-color: black;
-    color: black;
+    border-color: salmon;
   }
 `;
 
@@ -80,6 +82,6 @@ export const FormContainer = styled.div`
   align-self: center;
 
   @media screen and (max-width: 960px) {
-    width: 80%;
+    width: 100%;
   }
 `;

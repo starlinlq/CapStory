@@ -1,37 +1,33 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: black;
-  height: 550px;
-  margin: 0 15%;
-
+  margin: 0 10%;
   @media screen and (max-width: 960px) {
-    height: 250px;
-    margin: 0 10%;
   }
+`;
+export const Welcome = styled.h2`
+  margin-bottom: 3%;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
-  border: 1px solid black;
-  border-left: none;
-  height: 550px;
-  overflow: hidden;
-
+  border: 1px solid white;
+  flex-direction: column;
+  width: 450px;
   @media screen and (max-width: 960px) {
-    flex-direction: column;
-    border: none;
-    height: auto;
-    margin-top: 5%;
   }
 `;
 export const FormWrapper = styled.div`
-  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  position: relative;
+  bottom: 20px;
+  background-color: white;
+  height: 300px;
 `;
 
 export const InputWrapper = styled.div`
@@ -41,21 +37,19 @@ export const InputWrapper = styled.div`
 
 export const BackgroundWrapper = styled.div`
   @media screen and (max-width: 960px) {
-    margin-top: 5%;
   }
 `;
 export const Background = styled.img`
   background-image: url("https://cdn.pixabay.com/photo/2015/09/09/18/11/camera-932267_960_720.jpg");
-  width: 500px;
-  height: 100%;
+  width: 100%;
+  height: 250px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  overflow: hidden;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 
   @media screen and (max-width: 960px) {
-    height: 250px;
-    width: 350px;
   }
 `;
 
@@ -64,11 +58,16 @@ export const Container = styled.div`
   justify-content: center;
   height: 70vh;
   align-items: center;
+
+  @media screen and (max-width: 960px) {
+    height: 100vh;
+    margin: 0 2%;
+  }
 `;
 
 export const Input = styled.input`
   width: 100%;
-  padding: 1% 0;
+  padding: 5px 0;
 
   @media screen and (max-width: 960px) {
   }
@@ -80,12 +79,13 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
-  margin-top: 4%;
+  margin-top: 5%;
   background: none;
   color: black;
   border: 1px solid black;
   padding: 1% 15%;
   cursor: pointer;
+  width: 100%;
 
   &:hover {
     border-color: salmon;
@@ -93,7 +93,5 @@ export const Button = styled.button`
 `;
 
 export const Invalid = styled.p`
-  align-self: flex-start;
-  margin: 2% 0;
   color: red;
 `;

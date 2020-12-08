@@ -21,14 +21,18 @@ export const Section = styled.div`
 `;
 
 export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 15%;
   @media screen and (max-width: 960px) {
+    margin: 0 4%;
   }
 `;
 
 export const Content = styled.p`
   font-size: 20px;
   line-height: 2;
-  margin: 0 15%;
 
   @media screen and (max-width: 960px) {
     margin: 0 5%;
@@ -36,8 +40,8 @@ export const Content = styled.p`
   }
 `;
 export const Title = styled.h1`
-  text-align: center;
-  margin: 2% 0;
+  margin-top: 2%;
+  font-size: 45px;
 
   @media screen and (max-width: 960px) {
     margin: 5% 0;

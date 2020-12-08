@@ -12,6 +12,7 @@ import {
   Background,
   Wrapper,
   InputWrapper,
+  Welcome,
 } from "./login.elements";
 import { logInUser } from "../../globalStore/auth/AuthActions";
 import { useHistory } from "react-router-dom";
@@ -69,6 +70,7 @@ function Login({ match }) {
           <Background />
         </BackgroundWrapper>
         <FormWrapper>
+          <Welcome>Welcome back,</Welcome>
           <Form onSubmit={sendData}>
             <Label>Email</Label>
             <Input onChange={getEmail} value={data.email} />
