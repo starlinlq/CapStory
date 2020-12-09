@@ -62,6 +62,7 @@ export const loadingUser = () => {
               headers: { "x-auth-token": token },
             })
             .then((res) => {
+              console.log(res.data);
               dispatch(loadUser(res.data));
             });
         }

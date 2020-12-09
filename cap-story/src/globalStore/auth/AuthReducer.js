@@ -18,6 +18,7 @@ const initialState = {
   interest: null,
   location: null,
   photoUrl: null,
+  savedPost: null,
 };
 
 function authReducer(state = initialState, action) {
@@ -38,6 +39,7 @@ function authReducer(state = initialState, action) {
         interest: action.payload.interest,
         location: action.payload.location,
         photoUrl: action.payload.photoUrl,
+        savedPost: action.payload.savedPost,
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:

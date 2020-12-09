@@ -129,3 +129,27 @@ export const handleUserUpdate = ({ token, ...data }) => {
       .catch((err) => console.log(err));
   };
 };
+
+export function savedMemory(userId, postId, token) {
+  console.log(userId, postId);
+
+  axios
+    .post(
+      "http://localhost:5000/users/saved",
+      { userId, postId },
+      { headers: { "x-auth-token": token } }
+    )
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+}
+
+export const removeSaveMemory = (userId, postId, token) => {
+  axios
+    .post(
+      "http://localhost:5000/users/detelesaved",
+      { removePostId: postId, userId },
+      { headers: { "x-auth-token": token } }
+    )
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};

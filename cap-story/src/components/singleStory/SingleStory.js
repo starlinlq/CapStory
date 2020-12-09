@@ -3,6 +3,7 @@ import Profile from "../storyProfile/Profile";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { BsTrash } from "react-icons/bs";
+import Saved from "../savepost/Saved";
 import {
   Header,
   Section,
@@ -68,7 +69,7 @@ function SingleStory({ match }) {
     dispatch(removeComment(post_id, token));
   };
 
-  console.log(state);
+  console.log(userId);
 
   return (
     <Container>
@@ -80,6 +81,7 @@ function SingleStory({ match }) {
             <Body>
               <Title>{item.title}</Title>
               <Profile userId={item.userId} />
+              <Saved userId={userId} postId={item._id} />
               <Content>{item.story}</Content>
             </Body>
           </Section>

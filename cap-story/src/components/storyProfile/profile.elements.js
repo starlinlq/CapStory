@@ -26,7 +26,9 @@ export const PhotoWrapper = styled(Link)`
   border-top-style: solid;
 `;
 
-export const UserName = styled.h4``;
+export const UserName = styled.h4`
+  color: #01c5c4;
+`;
 export const UserNameWrapper = styled.div`
   display: flex;
   width: 60px;
