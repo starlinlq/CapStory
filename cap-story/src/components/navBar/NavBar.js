@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { BsBookmarks } from "react-icons/bs";
+
+import Profile from "../storyProfile/Profile";
 import {
   Nav,
   NavLogo,
@@ -23,6 +26,8 @@ import {
   DropButton,
   ButtonSec,
   MainContainer,
+  Wrapper,
+  BookMarkWrapper,
 } from "./NavBar.elements";
 
 import { BiMenu } from "react-icons/bi";
@@ -31,10 +36,11 @@ function NavBar() {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
   const [active, setActive] = useState(false);
-  const data = useSelector((state) => state.user.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
   const history = useHistory();
   const currentUserId = useSelector((state) => state.user.id);
+  const switchDiv = true;
 
   const [icon, setIcon] = useState(false);
 
@@ -94,7 +100,7 @@ function NavBar() {
             </NavItem>
             <NavItem>
               <NavLinks onClick={handleIcon} to="/stories">
-                Stories
+                Memories
                 {/* <DropMenu>
                   <Section>
                     <DropBody>
@@ -116,17 +122,22 @@ function NavBar() {
             <NavItem></NavItem>
           </NavContainer>
 
-          <Container>
-            {data ? (
+          <Container isAuthenticated={isAuthenticated}>
+            {isAuthenticated ? (
               <>
-                <ButtonSec>
+                <Wrapper>
                   <NavButton onClick={handleIcon} to="/create">
-                    Create Story
+                    Create Memory
                   </NavButton>
-                </ButtonSec>
+                  <BookMarkWrapper to="/bookmark">
+                    <BsBookmarks />
+                  </BookMarkWrapper>
+                </Wrapper>
                 <ButtonSec>
                   <UserSection ref={wrapperRef}>
-                    <UserAccount onClick={handleAccount}>Account</UserAccount>
+                    <UserAccount onClick={handleAccount}>
+                      <Profile userId={currentUserId} switchDiv={switchDiv} />
+                    </UserAccount>
                     <UserMenu active={active}>
                       <DropButton onClick={handleActive} to="/myAccount">
                         Memories

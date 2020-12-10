@@ -130,13 +130,11 @@ export const handleUserUpdate = ({ token, ...data }) => {
   };
 };
 
-export function savedMemory(userId, postId, token) {
-  console.log(userId, postId);
-
+export function savedMemory(userId, item, token) {
   axios
     .post(
       "http://localhost:5000/users/saved",
-      { userId, postId },
+      { userId, item },
       { headers: { "x-auth-token": token } }
     )
     .then((res) => console.log(res))

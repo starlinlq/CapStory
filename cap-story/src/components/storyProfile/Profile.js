@@ -8,7 +8,7 @@ import {
   Container,
 } from "./profile.elements";
 
-const Profile = ({ userId }) => {
+const Profile = ({ userId, switchDiv }) => {
   const [userData = { name: "", photoUrl: "" }, setUserdata] = useState();
 
   useEffect(() => {
@@ -27,10 +27,10 @@ const Profile = ({ userId }) => {
 
   return (
     <Container>
-      <PhotoWrapper to={`/user/${userId}`}>
-        <Photo url={userData.photoUrl} />
+      <PhotoWrapper switchDiv={switchDiv}>
+        <Photo url={userData.photoUrl} switchDiv={switchDiv} />
       </PhotoWrapper>
-      <UserNameWrapper>
+      <UserNameWrapper switchDiv={switchDiv}>
         <UserName>{userData.name}</UserName>
       </UserNameWrapper>
     </Container>

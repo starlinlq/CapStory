@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "../../global/globalStyles";
 
 export const MainContainer = styled.div`
-  margin: 0 10%;
-
   @media screen and (max-width: 960px) {
     margin: 0 2%;
   }
@@ -12,8 +10,8 @@ export const MainContainer = styled.div`
 
 export const Nav = styled.div`
   display: flex;
-  margin: 0 5%;
-  padding: 1% 0;
+  margin: 0 15%;
+  padding: 0.5% 0;
   align-items: center;
 `;
 
@@ -32,7 +30,7 @@ export const NavContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  width: 80%;
+  width: 70%;
   @media screen and (max-width: 960px) {
     flex-direction: column;
     width: 100%;
@@ -72,19 +70,14 @@ export const NavIcon = styled.div`
   }
 `;
 
-export const NavItem = styled.li`
-  border-bottom: 2px solid transparent;
-  font-size: 18px;
-  font-weight: bold;
+export const NavItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
 
   &:hover {
     color: grey;
-  }
-
-  @media screen and (max-width: 960px) {
-    &:hover {
-      border: none;
-    }
   }
 `;
 export const DropMenu = styled.div`
@@ -106,11 +99,8 @@ export const DropMenu = styled.div`
 
 export const NavLinks = styled(Link)`
   color: black;
-  display: flex;
-  justify-content: center;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  height: 100%;
 
   &:hover {
     color: red;
@@ -151,13 +141,31 @@ export const DropHeader = styled.div`
   height: 180px;
   width: 160px;
 `;
-export const DropContent = styled.div`
+export const Wrapper = styled.div`
+  width: 180px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const BookMarkWrapper = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: black;
+
   &:hover {
+    color: salmon;
+  }
+
+  @media screen and (max-width: 960px) {
+    color: white;
   }
 `;
 export const Container = styled.div`
   display: flex;
-  width: 20%;
+  width: ${({ isAuthenticated }) => (isAuthenticated ? "25%" : "15%")};
   justify-content: space-between;
   align-items: center;
   @media screen and (max-width: 960px) {
@@ -172,7 +180,7 @@ export const NavButton = styled(Link)`
   border: 1px solid black;
   color: black;
   text-decoration: none;
-  padding: 5px 20px;
+  padding: 5px 15px;
 
   &:hover {
     margin: 0;
@@ -182,14 +190,6 @@ export const NavButton = styled(Link)`
 
 export const UserAccount = styled(Link)`
   text-decoration: none;
-  color: black;
-  border: 1px solid black;
-  padding: 5px 20px;
-  height: 100%;
-
-  &:hover {
-    border-color: blue;
-  }
 
   @media screen and (max-width: 960px) {
     background-color: white;

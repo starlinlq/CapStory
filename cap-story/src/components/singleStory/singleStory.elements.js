@@ -14,6 +14,32 @@ export const Header = styled.div`
     height: 400px;
   }
 `;
+export const ProfileLink = styled.div`
+  text-decoration: none;
+  position: relative;
+  width: auto;
+  height: auto;
+  z-index: 999;
+`;
+export const Wrapper = styled(Link)`
+  text-decoration: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
+export const ProfileWrapper = styled.div`
+  position: relative;
+  display: flex;
+  width: 200px;
+  justify-content: ${({ isAuthenticated }) =>
+    isAuthenticated ? "space-between" : "center"};
+  margin-top: 1%;
+
+  @media screen and (max-width: 960px) {
+    margin-top: 0;
+    margin-bottom: 1%;
+  }
+`;
 
 export const Section = styled.div`
   display: flex;
@@ -44,7 +70,7 @@ export const Title = styled.h1`
   font-size: 45px;
 
   @media screen and (max-width: 960px) {
-    margin: 5% 0;
+    margin: 3% 0;
   }
 `;
 

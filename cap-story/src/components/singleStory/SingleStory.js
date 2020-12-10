@@ -25,6 +25,9 @@ import {
   CommentBody,
   Delete,
   Container,
+  ProfileWrapper,
+  ProfileLink,
+  Wrapper,
 } from "./singleStory.elements";
 import {
   postComment,
@@ -69,8 +72,6 @@ function SingleStory({ match }) {
     dispatch(removeComment(post_id, token));
   };
 
-  console.log(userId);
-
   return (
     <Container>
       {state
@@ -80,8 +81,13 @@ function SingleStory({ match }) {
             <Header imgUrl={item.imgUrl}></Header>
             <Body>
               <Title>{item.title}</Title>
-              <Profile userId={item.userId} />
-              <Saved userId={userId} postId={item._id} />
+              <ProfileWrapper isAuthenticated={userAuthenticated}>
+                <ProfileLink>
+                  <Wrapper to={`/user/${item.userId}`}></Wrapper>
+                  <Profile userId={item.userId} />
+                </ProfileLink>
+                <Saved userId={userId} postId={item._id} item={item} />
+              </ProfileWrapper>
               <Content>{item.story}</Content>
             </Body>
           </Section>

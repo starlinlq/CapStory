@@ -3,17 +3,19 @@ import { Link } from "react-router-dom";
 
 export const Photo = styled.img`
   background-image: url(${({ url }) => url});
-  width: 55px;
-  height: 55px;
+  width: ${({ switchDiv }) => (switchDiv ? "45px" : "55px")};
+  height: ${({ switchDiv }) => (switchDiv ? "45px" : "55px")};
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid white;
   border-radius: 50%;
 `;
+
 export const PhotoWrapper = styled(Link)`
-  width: 65px;
-  height: 65px;
+  order: ${({ switchDiv }) => (switchDiv ? "2" : "1")};
+  width: ${({ switchDiv }) => (switchDiv ? "55px" : "65px")};
+  height: ${({ switchDiv }) => (switchDiv ? "55px" : "65px")};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +32,7 @@ export const UserName = styled.h4`
   color: #01c5c4;
 `;
 export const UserNameWrapper = styled.div`
+  order: ${({ switchDiv }) => (switchDiv ? "1" : "2")};
   display: flex;
   width: 60px;
   align-items: center;
