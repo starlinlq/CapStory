@@ -32,7 +32,7 @@ export const setUser = (data) => {
   return {
     type: "REGISTER_SUCCESS",
     payload: {
-      user: data.user.displayName,
+      user: data.user,
       token: data.token,
     },
   };
@@ -131,23 +131,38 @@ export const handleUserUpdate = ({ token, ...data }) => {
 };
 
 export function savedMemory(userId, item, token) {
-  axios
+  return axios
     .post(
       "http://localhost:5000/users/saved",
       { userId, item },
       { headers: { "x-auth-token": token } }
     )
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
 }
 
 export const removeSaveMemory = (userId, postId, token) => {
-  axios
+  return axios
     .post(
       "http://localhost:5000/users/detelesaved",
       { removePostId: postId, userId },
       { headers: { "x-auth-token": token } }
     )
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
 };
+
+export function loadSaved(data) {
+  return {
+    type: "loadSaved",
+    payLoad: { ...data },
+  };
+}

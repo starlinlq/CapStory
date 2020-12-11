@@ -53,12 +53,12 @@ function DisplayUser({ match }) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/users/info", { userId: displayUserId })
+      .post("http://localhost:5000/users/info", { userId: match.params.id })
       .then((res) => {
         setDisplayData([res.data]);
       })
       .catch((err) => console.log(err));
-  }, [displayUserId]);
+  }, [match.params.id]);
 
   /* const userData = useSelector((data) => [
     {

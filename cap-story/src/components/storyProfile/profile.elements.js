@@ -29,6 +29,8 @@ export const PhotoWrapper = styled(Link)`
 `;
 
 export const UserName = styled.h4`
+  width: 100%;
+  text-align: center;
   color: #01c5c4;
 `;
 export const UserNameWrapper = styled.div`

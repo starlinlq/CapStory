@@ -36,11 +36,21 @@ function NavBar() {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
   const [active, setActive] = useState(false);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const userData = useSelector((state) => {
+    return {
+      authenticated: state.user.isAuthenticated,
+      currentUserId: state.user.id,
+    };
+  });
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const currentUserId = useSelector((state) => state.user.id);
+
   const switchDiv = true;
+
+  /*   useEffect(() => {
+    setCurrentUser(userData.currentUserId);
+  }, [userData.currentUserId]); */
 
   const [icon, setIcon] = useState(false);
 
@@ -122,8 +132,8 @@ function NavBar() {
             <NavItem></NavItem>
           </NavContainer>
 
-          <Container isAuthenticated={isAuthenticated}>
-            {isAuthenticated ? (
+          <Container isAuthenticated={userData.authenticated}>
+            {userData.authenticated ? (
               <>
                 <Wrapper>
                   <NavButton onClick={handleIcon} to="/create">
@@ -136,7 +146,10 @@ function NavBar() {
                 <ButtonSec>
                   <UserSection ref={wrapperRef}>
                     <UserAccount onClick={handleAccount}>
-                      <Profile userId={currentUserId} switchDiv={switchDiv} />
+                      <Profile
+                        userId={userData.currentUserId}
+                        switchDiv={switchDiv}
+                      />
                     </UserAccount>
                     <UserMenu active={active}>
                       <DropButton onClick={handleActive} to="/myAccount">
@@ -144,7 +157,7 @@ function NavBar() {
                       </DropButton>
                       <DropButton
                         onClick={handleActive}
-                        to={`/user/${currentUserId}`}
+                        to={`/user/${userData.currentUserId}`}
                       >
                         Profile
                       </DropButton>

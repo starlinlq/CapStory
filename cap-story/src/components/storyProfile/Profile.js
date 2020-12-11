@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Axios from "axios";
 import {
   Photo,
@@ -9,13 +10,12 @@ import {
 } from "./profile.elements";
 
 const Profile = ({ userId, switchDiv }) => {
-  const [userData = { name: "", photoUrl: "" }, setUserdata] = useState();
+  const [userData, setUserdata] = useState({});
 
   useEffect(() => {
     Axios.post("http://localhost:5000/users/info", { userId: userId })
       .then((res) =>
         setUserdata({
-          ...userData,
           name: res.data.displayName,
           photoUrl: res.data.photoUrl,
         })
@@ -23,7 +23,7 @@ const Profile = ({ userId, switchDiv }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userId]);
 
   return (
     <Container>

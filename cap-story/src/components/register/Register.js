@@ -73,7 +73,7 @@ const Register = () => {
         displayName: true,
       });
       return;
-    } else if (user.displayName === "") {
+    } else if (user.displayName === "" || user.displayName.length > 7) {
       setInputValid({ ...inputValid, displayName: true });
       return;
     } else if (user.email === "") {
@@ -116,8 +116,12 @@ const Register = () => {
           <Form onSubmit={sendData}>
             <Label>Display Name</Label>
             <Input onChange={setUserName} value={user.displayName} />
+            <Passwordlenght>
+              Name can't be longer than 7 characters
+            </Passwordlenght>
+
             {inputValid.displayName ? (
-              <Invalid>Please enter a name</Invalid>
+              <Invalid>Please enter a valid name</Invalid>
             ) : null}
             <Label>Email</Label>
             <Input onChange={setEmail} value={user.email} />

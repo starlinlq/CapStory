@@ -46,10 +46,9 @@ function authReducer(state = initialState, action) {
       localStorage.setItem("auth-token", action.payload.token);
       return {
         ...state,
-        ...action.payload,
         isAuthenticated: true,
         isLoading: false,
-        id: action.payload.user.id,
+        ...action.payload.user,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL: {

@@ -4,34 +4,54 @@ import { BsBookmarkPlus } from "react-icons/bs";
 import { ImBookmark } from "react-icons/im";
 import { IconWrapper, SaveWrapper, ShowSave, Container } from "./save.elements";
 import { savedMemory, removeSaveMemory } from "../../globalStore/actionCreator";
+import Axios from "axios";
 
 const Saved = ({ userId, postId, item }) => {
   const [isSaved, setIsSaved] = useState(false);
+  const [savedData, setSavedData] = useState([]);
   const token = useSelector((data) => data.user.token);
-  const userSaved = useSelector((data) => data.user.savedPost);
   const isAuthenticated = useSelector((data) => data.user.isAuthenticated);
 
   useEffect(() => {
-    if (userSaved && isAuthenticated) {
-      userSaved.map((data) => {
-        if (data._id === postId) {
+    async function setData() {
+      if (isAuthenticated) {
+        const userData = await Axios.get(
+          "http://localhost:5000/users/loadsaved",
+          { headers: { "x-auth-token": token } }
+        ).catch((err) => console.log(err));
+        setSavedData(userData.data.savedPost);
+      }
+    }
+    setData();
+  }, [isAuthenticated, token]);
+
+  useEffect(() => {
+    function handleSaved() {
+      if (isAuthenticated) {
+        const found = savedData.filter((data) => data._id === postId);
+        if (found.length !== 0) {
           setIsSaved(true);
         }
-        return null;
-      });
+      }
     }
-  }, [userSaved, postId, isAuthenticated]);
+    handleSaved();
+  }, [postId, isAuthenticated, savedData]);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (isSaved) {
-      removeSaveMemory(userId, postId, token);
+      const data = await removeSaveMemory(userId, postId, token);
+      console.log(data.savedPost);
+      setSavedData(data.savedPost);
       setIsSaved(!isSaved);
     } else {
-      savedMemory(userId, item, token);
+      const data = await savedMemory(userId, item, token);
+      setSavedData(data.savedPost);
       setIsSaved(!isSaved);
     }
     return;
   };
+
+  console.log(savedData);
 
   return (
     <Container isAuthenticated={isAuthenticated}>
