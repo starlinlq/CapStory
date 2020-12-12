@@ -17,9 +17,6 @@ export const Header = styled.div`
 export const ProfileLink = styled.div`
   text-decoration: none;
   position: relative;
-  width: auto;
-  height: auto;
-  z-index: 999;
 `;
 export const Wrapper = styled(Link)`
   text-decoration: none;
@@ -145,6 +142,14 @@ export const CommentContent = styled.p`
   line-height: 2;
   margin: 0 2.5%;
   text-align: justify;
+`;
+
+export const CommentWrapper = styled(Link)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  text-decoration: none;
 `;
 export const ComentAuthor = styled(Link)`
   color: blue;

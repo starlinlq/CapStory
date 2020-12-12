@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { BsTrash } from "react-icons/bs";
 import Saved from "../savepost/Saved";
+
 import {
   Header,
   Section,
@@ -28,6 +29,7 @@ import {
   ProfileWrapper,
   ProfileLink,
   Wrapper,
+  CommentWrapper,
 } from "./singleStory.elements";
 import {
   postComment,
@@ -130,7 +132,7 @@ function SingleStory({ match }) {
             <DisplayComment key={data._id}>
               <CommentHead>
                 <ComentAuthor to={`/user/${data.userId}`}>
-                  {data.userName}
+                  <Profile userId={data.userId} />
                 </ComentAuthor>
                 <CommentDate>{data.createdAt}</CommentDate>
                 {userAuthenticated && data.userId === userId && (

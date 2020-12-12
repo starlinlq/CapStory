@@ -32,6 +32,10 @@ export const UserName = styled.h4`
   width: 100%;
   text-align: center;
   color: #01c5c4;
+
+  &:hover {
+    color: salmon;
+  }
 `;
 export const UserNameWrapper = styled.div`
   order: ${({ switchDiv }) => (switchDiv ? "1" : "2")};
@@ -43,4 +47,5 @@ export const UserNameWrapper = styled.div`
 export const Container = styled.div`
   display: flex;
   margin: 1% 0;
+  text-decoration: none;
 `;

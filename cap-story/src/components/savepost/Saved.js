@@ -21,6 +21,7 @@ const Saved = ({ userId, postId, item }) => {
         ).catch((err) => console.log(err));
         setSavedData(userData.data.savedPost);
       }
+      return;
     }
     setData();
   }, [isAuthenticated, token]);

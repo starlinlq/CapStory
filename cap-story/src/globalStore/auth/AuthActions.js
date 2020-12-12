@@ -38,6 +38,7 @@ export const logInUser = ({ email, password }) => {
     axios
       .post("http://localhost:5000/users/login", { email, password })
       .then((res) => {
+        console.log(res.data);
         dispatch(logingUser(res.data));
       })
       .catch((err) => dispatch({ type: "LOGIN_FAIL" }));

@@ -33,6 +33,7 @@ import {
 import { BiMenu } from "react-icons/bi";
 import { CgCloseR } from "react-icons/cg";
 function NavBar() {
+  const switchDiv = true;
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
   const [active, setActive] = useState(false);
@@ -45,8 +46,6 @@ function NavBar() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const switchDiv = true;
 
   /*   useEffect(() => {
     setCurrentUser(userData.currentUserId);

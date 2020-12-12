@@ -145,6 +145,10 @@ export const Wrapper = styled.div`
   width: 180px;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 960px) {
+    margin-bottom: 2%;
+  }
 `;
 
 export const BookMarkWrapper = styled(Link)`
@@ -164,13 +168,15 @@ export const BookMarkWrapper = styled(Link)`
   }
 `;
 export const Container = styled.div`
+  position: relative;
   display: flex;
   width: ${({ isAuthenticated }) => (isAuthenticated ? "25%" : "15%")};
   justify-content: space-between;
   align-items: center;
   @media screen and (max-width: 960px) {
+    flex-direction: column;
+    align-itesm: center;
     width: 100%;
-    justify-content: center;
     margin-top: 10px;
   }
 `;
@@ -186,13 +192,19 @@ export const NavButton = styled(Link)`
     margin: 0;
     border-color: lightsalmon;
   }
+  @media screen and (max-width: 960px) {
+    background-color: black;
+    border-color: white;
+    color: white;
+  }
 `;
 
 export const UserAccount = styled(Link)`
   text-decoration: none;
 
   @media screen and (max-width: 960px) {
-    background-color: white;
+    margin-top: 1%;
+    background-color: black;
     border-radius: 0px;
     margin-left: 10px;
   }
@@ -200,11 +212,30 @@ export const UserAccount = styled(Link)`
 export const UserMenu = styled.div`
   display: ${({ active }) => (active ? "block" : "none")};
   position: absolute;
-  top: 40px;
-  width: 110px;
-  border: 1px solid lightgrey;
-  background-color: white;
-  z-index: 999;
+  top: 80px;
+  width: 150px;
+
+  border: 2px solid black;
+  z-index: 1;
+
+  /*  box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.75); */
+
+  &:after {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid black;
+    border-right: 0px solid black;
+    border-bottom: 0px solid black;
+    border-left: 2px solid black;
+    bottom: 100%;
+    left: 70%;
+    margin-left: -25px;
+    content: "";
+    transform: rotate(45deg);
+    margin-bottom: -12px;
+    background: white;
+  }
 `;
 
 export const UserSection = styled.div`
