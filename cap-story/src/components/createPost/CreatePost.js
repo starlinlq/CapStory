@@ -8,7 +8,7 @@ import {
   Form,
   FormButton,
   TextArea,
-  TopicButton,
+  FormValidation,
   Menu,
   Nature,
   City,
@@ -34,6 +34,10 @@ function CreatePost({ match }) {
     setActive,
   ] = useState();
   const token = useSelector((state) => state.user.token);
+  const [
+    validation = { author: false, title: false, story: false, lenght: false },
+    setValidation,
+  ] = useState();
   const [update, setUpdate] = useState(false);
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
@@ -190,7 +194,20 @@ function CreatePost({ match }) {
       "-" +
       today.getFullYear();
 
-    savePost({
+    if (data.author === "" || data.author.lenght > 10) {
+      setValidation({ ...validation, author:true});
+    } else if (data.title ==="" || data.title.lenght > 70 ){
+      setValidation({...validation, title: true})
+    } else if (data.story === "" || data.story.length > 3000 || data.story.length < 650){
+      setValidation({...validation, story: true})
+    } else {
+       setData({
+      author: "",
+      imgUrl: "",
+      title: "",
+      story: "",
+    });
+       savePost({
       post: {
         date: newDate,
         author: data.author,
@@ -201,12 +218,10 @@ function CreatePost({ match }) {
       },
       token,
     });
-    setData({
-      author: "",
-      imgUrl: "",
-      title: "",
-      story: "",
-    });
+    }
+
+   
+   
     e.preventDefault();
   }
   return (
@@ -215,6 +230,7 @@ function CreatePost({ match }) {
         <Section>
           <Label>author</Label>
           <Input value={data.author} onChange={handleAuthor} />
+          {validation.author ? <FormValidation> Author is required && Can't be longer than 10 characters</FormValidation>: null}
         </Section>
         <Section>
           <Label>Image</Label>
@@ -228,6 +244,7 @@ function CreatePost({ match }) {
         <Section>
           <Label>title</Label>
           <Input value={data.title} onChange={handleTitle} />
+          {validation.title? <FormValidation> Title is required && Can't be longer than 70 characters </FormValidation>: null}
         </Section>
         <Menu>
           <Label>Topic</Label>
@@ -258,6 +275,7 @@ function CreatePost({ match }) {
             rows="10"
             cols="50"
           />
+          {validation.story ? <FormValidation>Story is required && Has to be longer than 650 characters && Can't be longer than 3000 characters</FormValidation>: null }
         </Section>
         <Section>
           {update ? (

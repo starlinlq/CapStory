@@ -34,7 +34,7 @@ function DisplayUser({ match }) {
   const [displayData, setDisplayData] = useState([]);
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, errors, handleSubmit } = useForm();
   const [edit, setEdit] = useState(false);
   const stateData = useSelector((state) => state.content);
   const dispatch = useDispatch();
@@ -87,6 +87,7 @@ function DisplayUser({ match }) {
 
   function saveChange(updateData) {
     const data = { ...updateData, ...userId, photoUrl };
+
     dispatch(handleUserUpdate(data));
     setDisplayData([{ ...data, photoUrl: photoUrl.url }]);
     setEdit(false);
@@ -151,7 +152,12 @@ function DisplayUser({ match }) {
       <EditComment edit={edit} ref={wrapperRef}>
         <EditBody onSubmit={handleSubmit(saveChange)}>
           <Label>Name</Label>
-          <Input placeholder="name" name="name" ref={register} />
+          <Input
+            placeholder="name"
+            name="name"
+            ref={register({ required: true, maxLength: 10 })}
+          />
+          {errors.name && "name is required"}
           <Label>Photo</Label>
           <Input type="file" onChange={handleImgUrl} />
           {file && <Progressbar file={file} setFile={setFile} />}
@@ -159,11 +165,28 @@ function DisplayUser({ match }) {
             <Label>Please select an image file (png, jpeg or jpg)</Label>
           )}
           <Label>Bio</Label>
-          <TextArea rows="5" name="bio" ref={register} />
+          <TextArea
+            rows="5"
+            name="bio"
+            ref={register({ required: true, maxLenght: 500 })}
+          />
+          {errors.bio && "bio is required"}
+
           <Label>Location</Label>
-          <Input placeholder="Location" name="location" ref={register} />
+          <Input
+            placeholder="Location"
+            name="location"
+            ref={register({ required: true, maxLenght: 25 })}
+          />
+          {errors.location && "location is required"}
+
           <Label>Interest</Label>
-          <Input placeholder="Interest" name="interest" ref={register} />
+          <Input
+            placeholder="Interest"
+            name="interest"
+            ref={register({ required: true, maxLength: 100 })}
+          />
+          {errors.interest && "interest is required"}
           <SaveButton>Save Changes</SaveButton>
         </EditBody>
       </EditComment>

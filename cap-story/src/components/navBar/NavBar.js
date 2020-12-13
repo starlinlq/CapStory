@@ -138,7 +138,7 @@ function NavBar() {
                   <NavButton onClick={handleIcon} to="/create">
                     Create Memory
                   </NavButton>
-                  <BookMarkWrapper to="/bookmark">
+                  <BookMarkWrapper to="/bookmark" onClick={handleActive}>
                     <BsBookmarks />
                   </BookMarkWrapper>
                 </Wrapper>

@@ -82,7 +82,8 @@ export const Footer = styled.div`
 `;
 export const FooterLinks = styled.div`
   width: 100%;
-  text-align: center;
+  height: auto;
+  
 `;
 
 export const Button = styled(Link)`

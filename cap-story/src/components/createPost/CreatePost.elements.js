@@ -74,6 +74,10 @@ export const TopicButton = styled.li`
   }
 `;
 
+export const FormValidation = styled.p`
+color: red;
+margin-bottom: 1%;`
+
 export const Nature = styled.li`
   display: inline-block;
   margin: 4% 1%;

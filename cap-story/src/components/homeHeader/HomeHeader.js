@@ -28,12 +28,12 @@ function HomeHeader({ data }) {
         </Story>
         <Footer data={data}>
           <FooterLinks>
-            {isUserAuthenticated === false && (
-              <>
+            {isUserAuthenticated ? 
+            <Button to="/stories"> Go to Memories </Button>
+            :<>
                 <Button to="/register">Register</Button>
                 <Button to="login">Sign In</Button>
-              </>
-            )}
+              </> }
           </FooterLinks>
         </Footer>
       </HeadBody>
