@@ -43,12 +43,17 @@ function authReducer(state = initialState, action) {
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      localStorage.setItem("auth-token", action.payload.token);
+      localStorage.setItem("Authorization", `Bearer ${action.payload.token}`);
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        ...action.payload.user,
+        name: action.payload.user.username,
+        id: action.payload.user.id,
+        bio: action.payload.user.bio,
+        interest: action.payload.user.interest,
+        location: action.payload.user.location,
+        photoUrl: action.payload.user.photoUrl,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL: {

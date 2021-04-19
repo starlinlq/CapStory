@@ -7,24 +7,14 @@ export const registerUser = (data) => {
     dispatch({ type: " USER_LOADING" });
     const { displayName, email, password, passwordCheck } = data;
     axios
-      .post("http://localhost:5000/users/register", {
+      .post("http://127.0.0.1:3333/api/signup", {
         email,
-        displayName,
+        username: displayName,
         password,
-        passwordCheck,
       })
       .then((res) => {
-        axios
-          .post("http://localhost:5000/users/login", {
-            email,
-            password,
-          })
-          .then((res) => {
-            dispatch(setUser(res.data));
-          })
-          .catch((err) => {
-            dispatch({ type: "LOGIN_FAIL" });
-          });
+        console.log(res);
+        dispatch(setUser(res.data));
       })
       .catch((err) => {
         dispatch({ type: "LOGIN_FAIL" });
@@ -36,9 +26,8 @@ export const logInUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: "USER_LOADING" });
     axios
-      .post("http://localhost:5000/users/login", { email, password })
+      .post("http://127.0.0.1:3333/api/login", { email, password })
       .then((res) => {
-        console.log(res.data);
         dispatch(logingUser(res.data));
       })
       .catch((err) => dispatch({ type: "LOGIN_FAIL" }));
@@ -47,26 +36,13 @@ export const logInUser = ({ email, password }) => {
 export const loadingUser = () => {
   return (dispatch) => {
     dispatch({ type: "USER_LOADING" });
-    let token = localStorage.getItem("auth-token");
-    if (token === null) {
-      localStorage.setItem("auth-token", "");
-      token = "";
-    }
+    let auth = localStorage.getItem("Authorization");
     axios
-      .post("http://localhost:5000/users/tokenIsValid", null, {
-        headers: { "x-auth-token": token },
+      .get("http://127.0.0.1:3333/api/validate", {
+        headers: { Authorization: auth },
       })
       .then((res) => {
-        if (res.data) {
-          axios
-            .get("http://localhost:5000/users", {
-              headers: { "x-auth-token": token },
-            })
-            .then((res) => {
-              console.log(res.data);
-              dispatch(loadUser(res.data));
-            });
-        }
+        dispatch(loadUser(res.data));
       })
       .catch((err) => dispatch({ type: "AUTH_ERROR" }));
   };

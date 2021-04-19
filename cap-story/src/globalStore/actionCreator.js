@@ -45,12 +45,12 @@ export const loadUser = ({ displayName, id, ...data }) => {
   };
 };
 
-export const logingUser = (data) => {
+export const logingUser = ({ user, token }) => {
   return {
     type: "LOGIN_SUCCESS",
     payload: {
-      token: data.token,
-      user: data.user,
+      user,
+      token,
     },
   };
 };

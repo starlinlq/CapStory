@@ -19,12 +19,24 @@ import styled from "styled-components";
 import BookMark from "./components/bookmarked memories/BookMark";
 import { getComments } from "./globalStore/actionCreator";
 import "./index.css";
+import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadData());
-    dispatch(loadingUser());
+    /* dispatch(loadData());*/
+
+    let auth = localStorage.getItem("Authorization");
+    console.log(auth);
+    if (auth) {
+      dispatch(loadingUser());
+      /*  axios
+        .get("http://127.0.0.1:3333/api/validate", {
+          headers: { Authorization: auth },
+        })
+        .then((response) => console.log(response))
+        .catch((err) => console.log(err));*/
+    }
   }, []);
 
   const Content = styled.div`
