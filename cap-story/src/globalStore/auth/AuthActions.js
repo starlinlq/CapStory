@@ -13,8 +13,8 @@ export const registerUser = (data) => {
         password,
       })
       .then((res) => {
-        console.log(res);
-        dispatch(setUser(res.data));
+        console.log(res.data);
+        /*   dispatch(setUser(res.data)); */
       })
       .catch((err) => {
         dispatch({ type: "LOGIN_FAIL" });
@@ -36,9 +36,10 @@ export const logInUser = ({ email, password }) => {
 export const loadingUser = () => {
   return (dispatch) => {
     dispatch({ type: "USER_LOADING" });
+
     let auth = localStorage.getItem("Authorization");
     axios
-      .get("http://127.0.0.1:3333/api/validate", {
+      .get("http://127.0.0.1:3333/api/user/validate", {
         headers: { Authorization: auth },
       })
       .then((res) => {

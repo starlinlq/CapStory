@@ -13,7 +13,7 @@ const Profile = ({ userId, switchDiv }) => {
   const [userData, setUserdata] = useState({});
 
   useEffect(() => {
-    Axios.post("http://localhost:5000/users/info", { userId: userId })
+    Axios.post("", { userId: userId })
       .then((res) =>
         setUserdata({
           name: res.data.displayName,

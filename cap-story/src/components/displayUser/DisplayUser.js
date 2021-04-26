@@ -28,9 +28,20 @@ import {
   SaveButton,
   CancelButton,
 } from "./displayUser.elements";
+import { loadingUser } from "../../globalStore/auth/AuthActions";
 import Card from "../cardSection/Card";
 
 function DisplayUser({ match }) {
+  const testData = [
+    {
+      name: "starlin",
+      bio: "going places",
+      location: "alaska",
+      interest: "everything",
+      photoUrl:
+        "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    },
+  ];
   const [displayData, setDisplayData] = useState([]);
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
@@ -41,6 +52,7 @@ function DisplayUser({ match }) {
   const userId = useSelector((data) => {
     return { userId: data.user.id, token: data.user.token };
   });
+
   const photoUrl = useSelector((data) => data.url);
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
@@ -52,23 +64,17 @@ function DisplayUser({ match }) {
   const state = stateData.filter((data) => data.userId === displayUserId);
 
   useEffect(() => {
+    let auth = localStorage.getItem("Authorization");
     axios
-      .post("http://localhost:5000/users/info", { userId: match.params.id })
+      .get("http://127.0.0.1:3333/api/user/profile", {
+        headers: { Authorization: auth },
+      })
       .then((res) => {
-        setDisplayData([res.data]);
+        console.log();
+        setDisplayData([res.data.profile]);
       })
       .catch((err) => console.log(err));
   }, [match.params.id]);
-
-  /* const userData = useSelector((data) => [
-    {
-      name: data.user.name,
-      bio: data.user.bio,
-      location: data.user.location,
-      interest: data.user.interest,
-      imgUlr: data.user.photoUrl,
-    },
-  ]); */
 
   function makeChange() {
     setEdit(true);
@@ -87,8 +93,8 @@ function DisplayUser({ match }) {
 
   function saveChange(updateData) {
     const data = { ...updateData, ...userId, photoUrl };
-
     dispatch(handleUserUpdate(data));
+    //this is wrong, going to make a update with redux instead
     setDisplayData([{ ...data, photoUrl: photoUrl.url }]);
     setEdit(false);
   }
@@ -118,11 +124,11 @@ function DisplayUser({ match }) {
       {displayData.map((data) => (
         <Header>
           <PhotoSec>
-            <Img url={data.photoUrl} />
+            <Img url={data.photourl} />
           </PhotoSec>
           <BioSec>
             <Section>
-              <UserName>{data.displayName}</UserName>
+              <UserName>{data.name}</UserName>
             </Section>
             <Section>
               <Title>Bio</Title>
@@ -137,7 +143,7 @@ function DisplayUser({ match }) {
               <Interest>{data.interest}</Interest>
             </Section>
           </BioSec>
-          {isUserAuthenticated && userId.userId === displayUserId && (
+          {isUserAuthenticated && userId.userId === data.user_id && (
             <Button onClick={makeChange}>Edit Bio</Button>
           )}
         </Header>
