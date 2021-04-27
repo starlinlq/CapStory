@@ -3,68 +3,63 @@ import { useSelector } from "react-redux";
 import { BsBookmarkPlus } from "react-icons/bs";
 import { ImBookmark } from "react-icons/im";
 import { IconWrapper, SaveWrapper, ShowSave, Container } from "./save.elements";
-import { savedMemory, removeSaveMemory } from "../../globalStore/actionCreator";
-import Axios from "axios";
+import axios from "axios";
 
 const Saved = ({ userId, postId, item }) => {
-  const [isSaved, setIsSaved] = useState(false);
-  const [savedData, setSavedData] = useState([]);
-  const token = useSelector((data) => data.user.token);
+  const [bookmarked, setBookmared] = useState(false);
+
   const isAuthenticated = useSelector((data) => data.user.isAuthenticated);
+  const Authorization = localStorage.getItem("Authorization");
 
   useEffect(() => {
-    async function setData() {
-      if (isAuthenticated) {
-        const userData = await Axios.get(
-          "http://localhost:5000/users/loadsaved",
-          { headers: { "x-auth-token": token } }
-        ).catch((err) => console.log(err));
-        setSavedData(userData.data.savedPost);
-      }
-      return;
-    }
-    setData();
-  }, [isAuthenticated, token]);
-
-  useEffect(() => {
-    function handleSaved() {
-      if (isAuthenticated) {
-        const found = savedData.filter((data) => data._id === postId);
-        if (found.length !== 0) {
-          setIsSaved(true);
-        }
-      }
-    }
-    handleSaved();
-  }, [postId, isAuthenticated, savedData]);
+    axios
+      .get(`http://127.0.0.1:3333/api/post/${postId}/bookmark/validate`, {
+        headers: { Authorization },
+      })
+      .then((res) => {
+        setBookmared(res.data.bookmark);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleSave = async () => {
-    if (isSaved) {
-      const data = await removeSaveMemory(userId, postId, token);
-      console.log(data.savedPost);
-      setSavedData(data.savedPost);
-      setIsSaved(!isSaved);
+    if (bookmarked) {
+      axios
+        .delete(`http://127.0.0.1:3333/api/post/${postId}/bookmark`, {
+          headers: { Authorization },
+        })
+        .then((res) => setBookmared(!bookmarked))
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      const data = await savedMemory(userId, item, token);
-      setSavedData(data.savedPost);
-      setIsSaved(!isSaved);
+      axios
+        .post(
+          `http://127.0.0.1:3333/api/post/${postId}/bookmark`,
+          { data: "something" },
+          {
+            headers: { Authorization },
+          }
+        )
+        .then((res) => {
+          setBookmared(!bookmarked);
+        })
+        .catch((err) => console.log(err));
     }
     return;
   };
 
-  console.log(savedData);
-
   return (
     <Container isAuthenticated={isAuthenticated}>
       <SaveWrapper>
-        {isSaved ? (
+        {bookmarked ? (
           <ShowSave>Delete Memory</ShowSave>
         ) : (
           <ShowSave>Save memory</ShowSave>
         )}
       </SaveWrapper>
       <IconWrapper onClick={handleSave}>
-        {isSaved ? <ImBookmark /> : <BsBookmarkPlus />}
+        {bookmarked ? <ImBookmark /> : <BsBookmarkPlus />}
       </IconWrapper>
     </Container>
   );

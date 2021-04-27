@@ -20,6 +20,7 @@ import {
 import Card from "../cardSection/Card";
 import { loadingUser } from "../../globalStore/auth/AuthActions";
 import { removeStory } from "../../axios/getData";
+import axios from "axios";
 
 function DisplayAccount() {
   let state = useSelector((data) => data.content);
@@ -29,7 +30,9 @@ function DisplayAccount() {
   let commentCount = useSelector((state) => state.comments);
   const [deleteMemory, setDeleteMemory] = useState(false);
   const [idOfMemory, setIdOfMemory] = useState(null);
-  console.log(commentCount);
+  const Authorization = localStorage.getItem("Authorization");
+
+  useEffect(function () {}, []);
 
   function cancelDelete() {
     setDeleteMemory(false);

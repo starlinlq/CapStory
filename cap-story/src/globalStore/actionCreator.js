@@ -1,6 +1,6 @@
-import { ADD_POST, ADD_DATA, FIND_DATA } from "./actionsNames";
+import { ADD_POST, ADD_DATA, FIND_DATA, USER_LOADED } from "./actionsNames";
 import axios from "axios";
-
+const Authorization = localStorage.getItem("Authorization");
 export const newPost = (data) => {
   return {
     type: ADD_POST,
@@ -63,24 +63,33 @@ export const setUrl = (url) => {
   };
 };
 
-export const postComment = (data) => {
+export const postComment = ({ postId, comment, setState, state }) => {
   return (dispatch) => {
     axios
       .post(
-        "http://localhost:5000/comments",
-        { ...data },
-        { headers: { "x-auth-token": data.token } }
+        `http://127.0.0.1:3333/api/post/${postId}/comment`,
+        { comment },
+        { headers: { Authorization } }
       )
-      .then((res) => dispatch({ type: "ADD_COMMENT", payload: res.data }))
+      .then((res) => {
+        setState({ ...state, comments: res.data.comments });
+        console.log(
+          res
+        ); /*  dispatch({ type: "ADD_COMMENT", payload: res.data }) */
+      })
       .catch((err) => console.log(err));
   };
 };
 
-export const getComments = () => {
+export const getComments = ({ postId }) => {
   return (dispatch) => {
     axios
-      .get("http://localhost:5000/comments/all")
-      .then((res) => dispatch({ type: "GET_COMMENTS", payload: res.data }))
+      .get(`http://127.0.0.1:3333/api/post/${postId}/comment`, {
+        headers: { Authorization },
+      })
+      .then((res) => {
+        /* dispatch({ type: "GET_COMMENTS", payload: res.data }) */
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -113,14 +122,14 @@ export const handleUserUpdate = ({ token, ...data }) => {
     /* console.log(data) */
     axios
       .put(
-        `http://127.0.0.1:3333/api/user/profile`,
+        `http://127.0.0.1:3333/api/user/profile/update`,
         { ...data },
         {
           headers: { Authorization: auth },
         }
       )
       .then((res) => {
-        console.log(res.data);
+        dispatch({ typed: USER_LOADED, payload: {} });
       })
       .catch((err) => console.log(err));
   };

@@ -1,19 +1,21 @@
 import axios from "axios";
 import { setData } from "../globalStore/actionCreator";
-
+const auth = localStorage.getItem("Authorization");
 export const savePost = ({ post, token }) => {
-  console.log(post);
   axios
-    .post("http://localhost:5000/posts/", post, {
-      headers: { "x-auth-token": token },
+    .post("http://127.0.0.1:3333/api/post/create", post, {
+      headers: { Authorization: auth },
     })
+    .then((res) => console.log(res.data))
     .catch((err) => console.log(err.message));
 };
 
 export const loadData = () => {
   return (dispatch) => {
     axios
-      .get("http://localhost:5000/posts/all")
+      .get("http://127.0.0.1:3333/api/post", {
+        headers: { Authorization: auth },
+      })
       .then((res) => {
         console.log(res);
         dispatch(setData(res.data));

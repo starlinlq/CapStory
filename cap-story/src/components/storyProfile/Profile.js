@@ -13,11 +13,14 @@ const Profile = ({ userId, switchDiv }) => {
   const [userData, setUserdata] = useState({});
 
   useEffect(() => {
-    Axios.post("", { userId: userId })
+    let auth = localStorage.getItem("Authorization");
+    Axios.get(`http://127.0.0.1:3333/api/user/profile/${userId}`, {
+      headers: { Authorization: auth },
+    })
       .then((res) =>
         setUserdata({
-          name: res.data.displayName,
-          photoUrl: res.data.photoUrl,
+          name: res.data.profile.name,
+          photoUrl: res.data.profile.photourl,
         })
       )
       .catch((err) => {

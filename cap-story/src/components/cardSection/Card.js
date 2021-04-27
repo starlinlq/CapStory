@@ -14,15 +14,16 @@ import {
 } from "./Card.elements";
 
 function Card({ state, size }) {
+  console.log(state);
   return (
     <Section>
-      {state.map((data) => (
-        <MainCard imgUrl={data.imgUrl} key={data._id} size={size}>
+      {state.map((data, index) => (
+        <MainCard imgUrl={data.image} key={index} size={size}>
           <CardBody>
             <Title>{data.title}</Title>
             <Author>by {data.author}</Author>
             <Date>{data.story.slice(0, 200) + "..."}</Date>
-            <CardFooter to={`/data/${data._id}`}>
+            <CardFooter to={`/data/${data.id}`}>
               <p>Read Story</p>
               <BsArrowRight />
             </CardFooter>

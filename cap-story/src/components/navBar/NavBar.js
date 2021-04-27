@@ -151,7 +151,7 @@ function NavBar() {
                       />
                     </UserAccount>
                     <UserMenu active={active}>
-                      <DropButton onClick={handleActive} to="/myAccount">
+                      <DropButton to="/myAccount" onClick={handleActive}>
                         Memories
                       </DropButton>
                       <DropButton

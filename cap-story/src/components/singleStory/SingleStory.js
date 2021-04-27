@@ -31,69 +31,74 @@ import {
   Wrapper,
   CommentWrapper,
 } from "./singleStory.elements";
-import {
-  postComment,
-  getComments,
-  removeComment,
-} from "../../globalStore/actionCreator";
+import { postComment, removeComment } from "../../globalStore/actionCreator";
+import axios from "axios";
 function SingleStory({ match }) {
   const [newComment, setNewComment] = useState(false);
-  const state = useSelector((state) => state.content);
-  const userName = useSelector((state) => state.user.name);
+  const [state = { post: [], comments: [] }, setState] = useState();
   const userId = useSelector((state) => state.user.id);
   const id = match.params.id;
   const { register, handleSubmit, errors } = useForm();
-  const newDate = new Date();
-  const createdAt = `${newDate.getMonth()}/${newDate.getDay()}/${newDate.getFullYear()}`;
   const dispatch = useDispatch();
-  const commentData = useSelector((state) => state.comments);
   const userAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const token = localStorage.getItem("auth-token");
+  const Authorization = localStorage.getItem("Authorization");
 
   useEffect(() => {
-    dispatch(getComments());
+    axios
+      .get(`http://127.0.0.1:3333/api/post/${id}`)
+      .then((res) => {
+        setState({
+          ...state,
+          post: [res.data.post],
+          comments: res.data.comments,
+        });
+      })
+      .catch((err) => console.log(err));
   }, []);
-
-  /*  useEffect(() => {}, [commentData]); */
 
   function handleComment({ comment }) {
     setNewComment(false);
 
-    const userComment = {
-      comment,
-      userName,
-      createdAt: createdAt,
-      userId,
-      postId: id,
-      token,
-    };
-    dispatch(postComment(userComment));
+    axios
+      .post(
+        `http://127.0.0.1:3333/api/post/${id}/comment`,
+        { comment },
+        { headers: { Authorization } }
+      )
+      .then((res) => {
+        setState({ ...state, comments: res.data.currentComments });
+      })
+      .catch((err) => console.log(err));
   }
 
-  const deleteComment = (post_id) => {
-    dispatch(removeComment(post_id, token));
+  const deleteComment = (c_id) => {
+    console.log(c_id);
+    axios
+      .delete(`http://127.0.0.1:3333/api/post/comment/${c_id}`, {
+        headers: { Authorization },
+      })
+      .then((res) => setState({ ...state, comments: res.data.comments }))
+      .catch((err) => console.log(err));
   };
 
   return (
     <Container>
-      {state
-        .filter((item) => item._id === id)
-        .map((item) => (
-          <Section>
-            <Header imgUrl={item.imgUrl}></Header>
-            <Body>
-              <Title>{item.title}</Title>
-              <ProfileWrapper isAuthenticated={userAuthenticated}>
-                <ProfileLink>
-                  <Wrapper to={`/user/${item.userId}`}></Wrapper>
-                  <Profile userId={item.userId} />
-                </ProfileLink>
-                <Saved userId={userId} postId={item._id} item={item} />
-              </ProfileWrapper>
-              <Content>{item.story}</Content>
-            </Body>
-          </Section>
-        ))}
+      {state.post.map((story) => (
+        <Section key={story.id}>
+          <Header imgUrl={story.image}></Header>
+          <Body>
+            <Title>{story.title}</Title>
+            <ProfileWrapper isAuthenticated={userAuthenticated}>
+              <ProfileLink>
+                <Wrapper to={`/user/${story.user_id}`}></Wrapper>
+                <Profile userId={story.user_id} />
+              </ProfileLink>
+              <Saved userId={story.user_id} postId={story.id} />
+            </ProfileWrapper>
+            <Content>{story.story}</Content>
+          </Body>
+        </Section>
+      ))}
       <CommentSection>
         {userAuthenticated ? (
           <CreateComment>
@@ -126,24 +131,22 @@ function SingleStory({ match }) {
         )}
       </CommentSection>
       <Section>
-        {commentData
-          .filter((data) => data.postId === id)
-          .map((data) => (
-            <DisplayComment key={data._id}>
-              <CommentHead>
-                <ComentAuthor to={`/user/${data.userId}`}>
-                  <Profile userId={data.userId} />
-                </ComentAuthor>
-                <CommentDate>{data.createdAt}</CommentDate>
-                {userAuthenticated && data.userId === userId && (
-                  <Delete onClick={() => deleteComment(data._id)}>
-                    <BsTrash />
-                  </Delete>
-                )}
-              </CommentHead>
-              <CommentContent>{data.comment}</CommentContent>
-            </DisplayComment>
-          ))}
+        {state.comments.map((data) => (
+          <DisplayComment key={data.id}>
+            <CommentHead>
+              <ComentAuthor to={`/user/${data.user_id}`}>
+                <Profile userId={data.user_id} />
+              </ComentAuthor>
+              <CommentDate>{data.created_at.slice(0, 11)}</CommentDate>
+              {userAuthenticated && data.user_id === userId && (
+                <Delete onClick={() => deleteComment(data.id)}>
+                  <BsTrash />
+                </Delete>
+              )}
+            </CommentHead>
+            <CommentContent>{data.comment}</CommentContent>
+          </DisplayComment>
+        ))}
       </Section>
     </Container>
   );

@@ -28,10 +28,10 @@ export const commentReducer = (state = initialState, action) => {
       return [action.payload, ...state];
     }
     case "GET_COMMENTS": {
-      return [...action.payload.reverse()];
+      return;
     }
     case "DELETE_COMMENT": {
-      return state.filter((data) => data._id !== action.payload.postId);
+      return;
     }
 
     default:

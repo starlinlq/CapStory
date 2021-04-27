@@ -199,7 +199,7 @@ export const NavButton = styled(Link)`
   }
 `;
 
-export const UserAccount = styled(Link)`
+export const UserAccount = styled.div`
   text-decoration: none;
 
   @media screen and (max-width: 960px) {

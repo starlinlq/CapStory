@@ -2,25 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../cardSection/Card";
 import { cardDataTwo } from "../Home/Data";
-import Axios from "axios";
+import axios from "axios";
 import { Container, Title, CardWrapper } from "./bookMark.elements";
 
 function BookMark() {
   const [state, setState] = useState([]);
-  const token = useSelector((data) => data.user.token);
+  const Authorization = localStorage.getItem("Authorization");
 
-  useEffect(() => {
-    async function handleState() {
-      const bookmarked = await Axios.get(
-        "http://localhost:5000/users/loadsaved",
-        {
-          headers: { "x-auth-token": token },
-        }
-      );
-      setState(bookmarked.data.savedPost);
-    }
-
-    handleState();
+  useEffect(function () {
+    /*   axios
+      .get(`http://127.0.0.1:3333/api/user/bookmark`, {
+        headers: { Authorization },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err)); */
   }, []);
 
   return (

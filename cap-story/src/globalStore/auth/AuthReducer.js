@@ -51,7 +51,7 @@ function authReducer(state = initialState, action) {
         bio: action.payload.user.bio,
         interest: action.payload.user.interest,
         location: action.payload.user.location,
-        photoUrl: action.payload.user.photoUrl,
+        photoUrl: action.payload.user.photourl,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL: {

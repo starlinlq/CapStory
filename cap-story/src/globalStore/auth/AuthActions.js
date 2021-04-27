@@ -43,6 +43,7 @@ export const loadingUser = () => {
         headers: { Authorization: auth },
       })
       .then((res) => {
+        console.log(res.data);
         dispatch(loadUser(res.data));
       })
       .catch((err) => dispatch({ type: "AUTH_ERROR" }));

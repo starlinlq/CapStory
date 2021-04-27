@@ -32,46 +32,33 @@ import { loadingUser } from "../../globalStore/auth/AuthActions";
 import Card from "../cardSection/Card";
 
 function DisplayUser({ match }) {
-  const testData = [
-    {
-      name: "starlin",
-      bio: "going places",
-      location: "alaska",
-      interest: "everything",
-      photoUrl:
-        "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
-    },
-  ];
+  const [userPost, setUserPost] = useState([]);
   const [displayData, setDisplayData] = useState([]);
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const { register, errors, handleSubmit } = useForm();
   const [edit, setEdit] = useState(false);
-  const stateData = useSelector((state) => state.content);
-  const dispatch = useDispatch();
   const userId = useSelector((data) => {
     return { userId: data.user.id, token: data.user.token };
   });
-
+  const dispatch = useDispatch();
   const photoUrl = useSelector((data) => data.url);
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
-  const displayUserId = match.params.id;
   const isUserAuthenticated = useSelector(
     (state) => state.user.isAuthenticated
   );
 
-  const state = stateData.filter((data) => data.userId === displayUserId);
-
   useEffect(() => {
     let auth = localStorage.getItem("Authorization");
     axios
-      .get("http://127.0.0.1:3333/api/user/profile", {
+      .get(`http://127.0.0.1:3333/api/user/profile/${match.params.id}}`, {
         headers: { Authorization: auth },
       })
       .then((res) => {
-        console.log();
+        console.log(res);
         setDisplayData([res.data.profile]);
+        setUserPost([...res.data.posts]);
       })
       .catch((err) => console.log(err));
   }, [match.params.id]);
@@ -121,8 +108,8 @@ function DisplayUser({ match }) {
 
   return (
     <MainSec>
-      {displayData.map((data) => (
-        <Header>
+      {displayData.map((data, index) => (
+        <Header key={index}>
           <PhotoSec>
             <Img url={data.photourl} />
           </PhotoSec>
@@ -150,10 +137,10 @@ function DisplayUser({ match }) {
       ))}
       ;
       <BodySection>
-        {displayData.map((name) => (
-          <BodyHeader>{name.displayName + " Memories"}</BodyHeader>
+        {displayData.map((data, index) => (
+          <BodyHeader key={index}>{data.name + " Memories"}</BodyHeader>
         ))}
-        <Card state={state} size={cardDataTwo} />
+        <Card state={userPost} size={cardDataTwo} />
       </BodySection>
       <EditComment edit={edit} ref={wrapperRef}>
         <EditBody onSubmit={handleSubmit(saveChange)}>

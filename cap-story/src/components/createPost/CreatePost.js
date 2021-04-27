@@ -34,14 +34,15 @@ function CreatePost({ match }) {
     setActive,
   ] = useState();
   const token = useSelector((state) => state.user.token);
+  const author = useSelector((state) => state.user.name);
   const [
-    validation = { author: false, title: false, story: false, lenght: false },
+    validation = { title: false, story: false, lenght: false },
     setValidation,
   ] = useState();
   const [update, setUpdate] = useState(false);
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
-  const test = useSelector((test) => test.url.url);
+  const photourl = useSelector((test) => test.url.url);
 
   const modifyStory = useSelector((story) => story.content).filter(
     (data) => data._id === match.params.id
@@ -50,7 +51,7 @@ function CreatePost({ match }) {
   const [
     data = {
       date: "",
-      author: "",
+      author,
       imgUrl: "",
       title: "",
       story: "",
@@ -74,17 +75,12 @@ function CreatePost({ match }) {
     } else {
       setUpdate(false);
       setData({
-        author: "",
         imgUrl: "",
         title: "",
         story: "",
       });
     }
   }, [singleStory]);
-
-  function handleAuthor(e) {
-    setData({ ...data, author: e.target.value });
-  }
 
   function setTopic(selectedTopic) {
     switch (selectedTopic) {
@@ -194,43 +190,46 @@ function CreatePost({ match }) {
       "-" +
       today.getFullYear();
 
-    if (data.author === "" || data.author.lenght > 10) {
-      setValidation({ ...validation, author:true});
-    } else if (data.title ==="" || data.title.lenght > 70 ){
-      setValidation({...validation, title: true})
-    } else if (data.story === "" || data.story.length > 3000 || data.story.length < 650){
-      setValidation({...validation, story: true})
+    if (data.title === "" || data.title.lenght > 70) {
+      setValidation({ ...validation, title: true });
+    } else if (
+      data.story === "" ||
+      data.story.length > 3000 ||
+      data.story.length < 650
+    ) {
+      setValidation({ ...validation, story: true });
     } else {
-       setData({
-      author: "",
-      imgUrl: "",
-      title: "",
-      story: "",
-    });
-       savePost({
-      post: {
-        date: newDate,
-        author: data.author,
-        imgUrl: test,
-        title: data.title,
-        story: data.story,
-        topic: data.topic,
-      },
-      token,
-    });
+      setData({
+        imgUrl: "",
+        title: "",
+        story: "",
+      });
+      savePost({
+        post: {
+          image: photourl,
+          title: data.title,
+          story: data.story,
+          topic: data.topic,
+          author,
+        },
+        token,
+      });
     }
 
-   
-   
     e.preventDefault();
   }
   return (
     <FormWrapper>
       <Form onSubmit={handleForm}>
         <Section>
-          <Label>author</Label>
-          <Input value={data.author} onChange={handleAuthor} />
-          {validation.author ? <FormValidation> Author is required && Can't be longer than 10 characters</FormValidation>: null}
+          <Label>title</Label>
+          <Input value={data.title} onChange={handleTitle} />
+          {validation.title ? (
+            <FormValidation>
+              {" "}
+              Title is required && Can't be longer than 70 characters{" "}
+            </FormValidation>
+          ) : null}
         </Section>
         <Section>
           <Label>Image</Label>
@@ -240,11 +239,6 @@ function CreatePost({ match }) {
           {error && (
             <Label>Please select an image file (png, jpeg or jpg)</Label>
           )}
-        </Section>
-        <Section>
-          <Label>title</Label>
-          <Input value={data.title} onChange={handleTitle} />
-          {validation.title? <FormValidation> Title is required && Can't be longer than 70 characters </FormValidation>: null}
         </Section>
         <Menu>
           <Label>Topic</Label>
@@ -275,7 +269,12 @@ function CreatePost({ match }) {
             rows="10"
             cols="50"
           />
-          {validation.story ? <FormValidation>Story is required && Has to be longer than 650 characters && Can't be longer than 3000 characters</FormValidation>: null }
+          {validation.story ? (
+            <FormValidation>
+              Story is required && Has to be longer than 650 characters && Can't
+              be longer than 3000 characters
+            </FormValidation>
+          ) : null}
         </Section>
         <Section>
           {update ? (

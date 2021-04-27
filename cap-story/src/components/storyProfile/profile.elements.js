@@ -12,7 +12,7 @@ export const Photo = styled.img`
   border-radius: 50%;
 `;
 
-export const PhotoWrapper = styled(Link)`
+export const PhotoWrapper = styled.div`
   order: ${({ switchDiv }) => (switchDiv ? "2" : "1")};
   width: ${({ switchDiv }) => (switchDiv ? "55px" : "65px")};
   height: ${({ switchDiv }) => (switchDiv ? "55px" : "65px")};
