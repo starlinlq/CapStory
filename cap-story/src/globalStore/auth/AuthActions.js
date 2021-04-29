@@ -2,10 +2,10 @@ import axios from "axios";
 
 import { setUser, loadUser, logingUser } from "../actionCreator";
 
-export const registerUser = (data) => {
+export const registerUser = ({ displayName, email, password }) => {
   return (dispatch) => {
     dispatch({ type: " USER_LOADING" });
-    const { displayName, email, password, passwordCheck } = data;
+
     axios
       .post("http://127.0.0.1:3333/api/signup", {
         email,

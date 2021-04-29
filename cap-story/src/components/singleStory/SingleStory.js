@@ -47,10 +47,11 @@ function SingleStory({ match }) {
     axios
       .get(`http://127.0.0.1:3333/api/post/${id}`)
       .then((res) => {
+        console.log(res.data);
         setState({
           ...state,
-          post: [res.data.post],
-          comments: res.data.comments,
+          post: [...res.data.post],
+          comments: res.data.post[0].comment,
         });
       })
       .catch((err) => console.log(err));

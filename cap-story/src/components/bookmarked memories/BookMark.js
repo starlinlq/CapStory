@@ -10,12 +10,12 @@ function BookMark() {
   const Authorization = localStorage.getItem("Authorization");
 
   useEffect(function () {
-    /*   axios
+    axios
       .get(`http://127.0.0.1:3333/api/user/bookmark`, {
         headers: { Authorization },
       })
       .then((res) => console.log(res))
-      .catch((err) => console.log(err)); */
+      .catch((err) => console.log(err));
   }, []);
 
   return (
