@@ -34,7 +34,6 @@ function Home() {
   return (
     <>
       <HomeHeader data={objOne} />
-     
       <Container>
         <Card state={story} size={cardData} />
       </Container>

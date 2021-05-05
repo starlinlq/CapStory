@@ -65,19 +65,7 @@ export const setUrl = (url) => {
 
 export const postComment = ({ postId, comment, setState, state }) => {
   return (dispatch) => {
-    axios
-      .post(
-        `http://127.0.0.1:3333/api/post/${postId}/comment`,
-        { comment },
-        { headers: { Authorization } }
-      )
-      .then((res) => {
-        setState({ ...state, comments: res.data.comments });
-        console.log(
-          res
-        ); /*  dispatch({ type: "ADD_COMMENT", payload: res.data }) */
-      })
-      .catch((err) => console.log(err));
+    
   };
 };
 
