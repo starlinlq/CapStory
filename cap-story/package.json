@@ -13,6 +13,7 @@
     "firebase": "^8.0.0",
     "firestore": "^1.1.6",
     "mongoose": "^5.12.3",
+    "nan": "^2.14.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-hook-form": "^6.10.1",
